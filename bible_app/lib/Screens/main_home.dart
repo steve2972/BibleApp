@@ -46,6 +46,12 @@ class MainHomeScreen extends StatelessWidget {
                   ),
                   onPressed: null,
                 ),
+                new IconButton(
+                  icon: Icon(
+                    Icons.alarm,
+                  ),
+                  onPressed: null,
+                )
               ],
             ),
           ),
