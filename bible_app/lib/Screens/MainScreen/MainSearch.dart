@@ -9,10 +9,17 @@ class MainSearch extends StatefulWidget {
 }
 
 class MainSearchState extends State<MainSearch> {
+  final topBar = new AppBar(
+    backgroundColor: Colors.white,
+    centerTitle: true,
+    elevation: 0.0,
+    title: Text("검색"),
+  );
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: Container(color: Colors.red,),
+      appBar: topBar,
+      body: Container(color: Colors.white,),
     );
   }
 }

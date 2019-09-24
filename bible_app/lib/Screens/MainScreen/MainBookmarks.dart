@@ -9,11 +9,17 @@ class MainBookmark extends StatefulWidget {
 }
 
 class MainBookmarkState extends State<MainBookmark> {
+  final topBar = new AppBar(
+    backgroundColor: Colors.white,
+    centerTitle: true,
+    elevation: 0.0,
+    title: Text("즐겨찾기"),
+  );
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return new Scaffold(
-      body: Container(color: Colors.yellowAccent,),
+      appBar: topBar,
+      body: Container(color: Colors.white,),
     );
   }
 }

@@ -15,7 +15,6 @@ class MainNavigation extends StatefulWidget {
 class MainNavigationState extends State<MainNavigation> {
   PageController _pageController;
   var _page = 0;
-
   final topBar = new AppBar(
     backgroundColor: Colors.grey[100],
     centerTitle: true,
@@ -29,10 +28,10 @@ class MainNavigationState extends State<MainNavigation> {
    MainSearch(),
    MainBookmark(),
  ];
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: topBar,
         body: PageView(
         children: _children,
         controller: _pageController,
@@ -52,7 +51,7 @@ class MainNavigationState extends State<MainNavigation> {
             title: Text("검색"),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
+            icon: Icon(Icons.bookmark_border),
             title: Text("즐겨찾기"),
           ),
         ],
