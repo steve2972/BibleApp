@@ -1,5 +1,5 @@
+import 'package:bible_app/Screens/MainNavigation.dart';
 import 'package:flutter/material.dart';
-import 'package:bible_app/Screens/main_home.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,15 +9,16 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Simple Navigation',
       debugShowCheckedModeBanner: false,
+      home: new MainNavigation(),
       theme: new ThemeData(
           primarySwatch: Colors.blue,
-          primaryColor: Colors.black,
-          primaryIconTheme: IconThemeData(color: Colors.black),
+          primaryColor: Colors.blue,
+          accentColor: Colors.blue[200],
+          //primaryIconTheme: IconThemeData(color: Colors.black),
           primaryTextTheme: TextTheme(
               title: TextStyle(color: Colors.black)
               ),
           textTheme: TextTheme(title: TextStyle(color: Colors.black))),
-      home: new MainHomeScreen(),
     );
   }
 }
