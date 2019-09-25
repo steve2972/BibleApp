@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "866026888350",
-    "firebase_url": "https://bible-7bea5.firebaseio.com",
-    "project_id": "bible-7bea5",
-    "storage_bucket": "bible-7bea5.appspot.com"
+    "project_number": "692771687293",
+    "firebase_url": "https://bible-9b827.firebaseio.com",
+    "project_id": "bible-9b827",
+    "storage_bucket": "bible-9b827.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:866026888350:android:94cc19a9f5d82a63a9ef8f",
+        "mobilesdk_app_id": "1:692771687293:android:8a8d464dc2e30397221a14",
         "android_client_info": {
           "package_name": "com.example.bible_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "866026888350-rmpvrcfuhb5l027pmt294nqofsqgn5gg.apps.googleusercontent.com",
+          "client_id": "692771687293-bo8c0adgk7jn9mqc7s64217fdq7549aa.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyABW9c9fQjWt_tAPCV85RTBt-Mbf8Eo_RM"
+          "current_key": "AIzaSyCmercZQlZbBrhz6FtNsoeOR_MiIj3OHzU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "866026888350-rmpvrcfuhb5l027pmt294nqofsqgn5gg.apps.googleusercontent.com",
+              "client_id": "692771687293-bo8c0adgk7jn9mqc7s64217fdq7549aa.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
