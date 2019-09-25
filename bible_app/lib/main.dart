@@ -1,15 +1,22 @@
 import 'package:bible_app/Screens/MainNavigation.dart';
+import 'package:bible_app/Screens/MenuScreen/LoginScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  final FirebaseAuth mAuth = FirebaseAuth.instance;
+  bool isUser() {
+    return mAuth.currentUser() == null ? true : false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Simple Navigation',
       debugShowCheckedModeBanner: false,
-      home: new MainNavigation(),
+      home: isUser() ? MainNavigation(): LoginScreen(),
       theme: new ThemeData(
           primarySwatch: Colors.blue,
           primaryColor: Colors.blue,
