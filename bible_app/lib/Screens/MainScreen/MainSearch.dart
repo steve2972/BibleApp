@@ -10,7 +10,7 @@ class MainSearch extends StatefulWidget {
 
 class MainSearchState extends State<MainSearch> {
   final topBar = new AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.grey[50],
     centerTitle: true,
     elevation: 0.0,
     title: Text("검색"),
@@ -19,7 +19,7 @@ class MainSearchState extends State<MainSearch> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: topBar,
-      body: Container(color: Colors.white,),
+      body: Container(color: Colors.grey[50],),
     );
   }
 }

@@ -15,13 +15,6 @@ class MainNavigation extends StatefulWidget {
 class MainNavigationState extends State<MainNavigation> {
   PageController _pageController;
   var _page = 0;
-  final topBar = new AppBar(
-    backgroundColor: Colors.grey[100],
-    centerTitle: true,
-    elevation: 1.0,
-    leading: new Icon(Icons.menu),
-    title: Text("Main Screen"),
-  );
 
   final List<Widget> _children = [
    MainHome(),
@@ -62,11 +55,7 @@ class MainNavigationState extends State<MainNavigation> {
   }
 
   void navigationTapped(int page) {
-    _pageController.animateToPage(
-      page,
-      duration: Duration(milliseconds: 100),
-      curve: Curves.easeIn,
-    );
+    _pageController.jumpToPage(page);
   }
 
   void onPageChanged(int page) {

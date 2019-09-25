@@ -10,7 +10,7 @@ class MainBookmark extends StatefulWidget {
 
 class MainBookmarkState extends State<MainBookmark> {
   final topBar = new AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.grey[50],
     centerTitle: true,
     elevation: 0.0,
     title: Text("즐겨찾기"),
@@ -19,7 +19,7 @@ class MainBookmarkState extends State<MainBookmark> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: topBar,
-      body: Container(color: Colors.white,),
+      body: Container(color: Colors.grey[50],),
     );
   }
 }

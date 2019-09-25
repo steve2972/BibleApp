@@ -15,7 +15,7 @@ class MainHomeState extends State<MainHome> {
   static GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   final topBar = new AppBar(
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.grey[50],
     centerTitle: true,
     elevation: 0.0,
     leading: new IconButton(
@@ -32,7 +32,7 @@ class MainHomeState extends State<MainHome> {
     return new Scaffold(
       key: _scaffoldKey,
       appBar: topBar,
-      body: Container(color: Colors.white,),
+      body: Container(color: Colors.grey[50],),
       drawer: startDrawer(),
     );
   }
