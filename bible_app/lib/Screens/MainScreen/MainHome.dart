@@ -12,12 +12,17 @@ class MainHome extends StatefulWidget {
 class MainHomeState extends State<MainHome> {
   bool _isVisible = true;
   String _title = "홈";
+  static GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   final topBar = new AppBar(
     backgroundColor: Colors.white,
     centerTitle: true,
     elevation: 0.0,
-    leading: new Icon(Icons.menu, color: Colors.black,),
+    leading: new IconButton(
+      icon: new Icon(Icons.menu),
+      color: Colors.black,
+      onPressed: () => _scaffoldKey.currentState.openDrawer(),
+    ),
     title: Text("홈"),
   );
   
@@ -25,6 +30,7 @@ class MainHomeState extends State<MainHome> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      key: _scaffoldKey,
       appBar: topBar,
       body: Container(color: Colors.white,),
       drawer: startDrawer(),
@@ -37,7 +43,6 @@ class MainHomeState extends State<MainHome> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           Container(
-            height: 100.0,
             margin: EdgeInsets.all(0),
             padding: EdgeInsets.all(0),
             child: DrawerHeader(
