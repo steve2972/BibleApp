@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   final FirebaseAuth mAuth = FirebaseAuth.instance;
   bool isUser() {
     //TODO: Check logic -> check what returns when mAuth.currentUser() is called
-    return mAuth.currentUser() == null ? true : false;
+    return mAuth.currentUser() != null ? true : false;
   }
 
   @override
