@@ -137,7 +137,7 @@ class _ChapterViewState extends State<ChapterView> {
     setState(() {
       _chapterNumberPref = (_prefs.getInt(numKey) ?? 998);
       _prefs.setInt(numKey, _chapterNumberPref);
-      print('cur: $_chapterNumberPref');
+      print('Chapter Pref #: $_chapterNumberPref');
     });
   }
 
