@@ -1,0 +1,5 @@
+Tables: Book, Chapter, Verse
+
+Book {name(string), chapters(int)}
+Chapter {Number(int), BookId(string)}
+Verse {Number(int), Text(str), ChapterId(int)}
