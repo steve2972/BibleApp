@@ -55,7 +55,6 @@ class NoteCardComponent extends StatelessWidget {
                   Text(
                     '${noteData.title.trim().length <= 20 ? noteData.title.trim() : noteData.title.trim().substring(0, 20) + '...'}',
                     style: TextStyle(
-                        fontFamily: 'ZillaSlab',
                         fontSize: 20,
                         fontWeight: noteData.isImportant
                             ? FontWeight.w800

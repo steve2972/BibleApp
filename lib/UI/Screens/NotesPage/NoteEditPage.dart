@@ -7,6 +7,7 @@ import 'package:flutter/painting.dart' as prefix0;
 import 'package:flutter/widgets.dart';
 import 'package:bible_test2/UI/Models/Notes/NotesModel.dart';
 import 'package:bible_test2/Repositories/Notes/NotesDatabase.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class EditNotePage extends StatefulWidget {
   Function() triggerRefetch;
@@ -128,6 +129,10 @@ class _EditNotePageState extends State<EditNotePage> {
                         onPressed: () {
                           handleDelete();
                         },
+                      ),
+                      IconButton(
+                        icon: Icon(OMIcons.libraryAdd),
+                        onPressed: (){},
                       ),
                       AnimatedContainer(
                         margin: EdgeInsets.only(left: 10),

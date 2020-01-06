@@ -1,5 +1,5 @@
 import 'package:bible_test2/UI/Models/Navigation/BottomNavigationBar.dart';
-import 'package:bible_test2/UI/Models/Notes/NotesAppBar.dart';
+import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../../Models/Notes/NoteTile.dart';
@@ -53,7 +53,25 @@ class _NotesPageState extends State<NotesPage> {
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: <Widget>[
-          NotesAppBar(),
+          SliverAppBar(
+            backgroundColor: Styles.LightAppBarColor,
+      elevation: 1,
+      pinned: true,
+      //centerTitle: true,
+      title: Text("Notes", style: Styles.mainTextBlack),
+      actions: <Widget>[
+
+        IconButton(
+          icon: Icon(Icons.add),
+          color: Styles.lightIcon,
+          onPressed: () {Navigator.push(
+        context,
+        CupertinoPageRoute(
+            builder: (context) =>
+                EditNotePage(triggerRefetch: refetchNotesFromDB)));},
+        ),
+      ],
+          ),
           SliverList(
             delegate: SliverChildListDelegate(
               [

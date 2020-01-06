@@ -16,29 +16,17 @@ class NotesAppBar extends StatelessWidget {
       elevation: 1,
       pinned: true,
       //centerTitle: true,
-      expandedHeight: 150.0,
-      flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.only(left: 75, bottom: 10),
-        title: Text("Notes", style: Styles.mainText),
-      ),
-
-      leading: IconButton(
-          icon: Icon(OMIcons.settings),
-          color: Styles.lightIcon,
-          onPressed: () {},
-        ),
-
+      title: Text("Notes", style: Styles.mainText),
       actions: <Widget>[
-        IconButton(
-          icon: Icon(OMIcons.checkBox),
-          color: Styles.lightIcon,
-          onPressed: () {},
-        ),
-        
+
         IconButton(
           icon: Icon(Icons.add),
           color: Styles.lightIcon,
-          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => EditNotePage()));},
+          onPressed: () {Navigator.push(
+        context,
+        CupertinoPageRoute(
+            builder: (context) =>
+                EditNotePage(triggerRefetch: refetchNotesFromDB)));},
         ),
       ],
     );

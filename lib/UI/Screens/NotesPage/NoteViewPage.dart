@@ -111,10 +111,6 @@ class _ViewNotePageState extends State<ViewNotePage> {
                         icon: Icon(OMIcons.edit, color: Styles.lightIcon),
                         onPressed: handleEdit,
                       ),
-                      IconButton(
-                        icon: Icon(OMIcons.add, color: Styles.lightIcon,),
-                        onPressed: (){},
-                      )
                     ],
                   ),
                 ),
