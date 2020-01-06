@@ -22,3 +22,9 @@ class IncrementChapter extends VerseEvent {
 
   IncrementChapter({this.isIncrement, this.curChapter}) : super(chapterNum: curChapter);
 }
+
+class GetVerseNum extends VerseEvent {
+  final int curChapter;
+  
+  GetVerseNum(this.curChapter) : super(chapterNum: curChapter);
+}

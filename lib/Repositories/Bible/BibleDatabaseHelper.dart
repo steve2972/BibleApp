@@ -72,4 +72,17 @@ class BibleDatabaseHelper {
     return verses;
   }
 
+  Future<int> queryVerseLength(int chapterNum) async {
+    Database db = await instance.database;
+    List<Map> results = await db.rawQuery(
+      '''
+      SELECT COUNT(*)
+      FROM $verseTable
+      WHERE $verseChapterId=$chapterNum;
+      '''
+    );
+
+    return results.first[0];
+  }
+
 }

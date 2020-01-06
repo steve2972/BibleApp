@@ -36,7 +36,7 @@ class VerseBloc extends Bloc<VerseEvent, VerseState> {
 
   void increment(int cur) => this.add(IncrementChapter(isIncrement: true, curChapter: cur));
   void decrement(int cur) => this.add(IncrementChapter(isIncrement: false, curChapter: cur));
-
+  void goTo(int to) => this.add(GetVerse(number: to));
 
 }
 

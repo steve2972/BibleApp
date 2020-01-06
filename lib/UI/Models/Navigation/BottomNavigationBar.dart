@@ -1,5 +1,4 @@
 import 'package:bible_test2/Blocs/InheritedBlocs.dart';
-import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
