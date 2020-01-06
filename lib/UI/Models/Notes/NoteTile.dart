@@ -149,7 +149,7 @@ class AddNoteCardComponent extends StatelessWidget {
                       Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Add new note',
+                            '새로운 노트 작성',
                             style: TextStyle(
                                 fontFamily: 'ZillaSlab',
                                 color: Theme.of(context).primaryColor,

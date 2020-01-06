@@ -9,7 +9,6 @@ import '../../Models/Notes/NotesModel.dart';
 import '../../Models/Navigation/FadeRoute.dart';
 import 'package:bible_test2/Repositories/Notes/NotesDatabase.dart';
 import 'package:flutter/painting.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
 import 'dart:async';
 
 class NotesPage extends StatefulWidget {
@@ -60,10 +59,7 @@ class _NotesPageState extends State<NotesPage> {
               [
               Container(height: 64,),
               ...buildNoteComponentsList(),
-              GestureDetector(
-                onTap: gotoEditNote, 
-                child: AddNoteCardComponent(),
-              ),
+              
               Container(height: 100,),
               ]
             ),
@@ -135,7 +131,12 @@ class _NotesPageState extends State<NotesPage> {
         ));
       });
     }
-    return noteComponentsList;
+    List<Widget> emptyList = [];
+    emptyList.add(GestureDetector(
+                onTap: gotoEditNote, 
+                child: AddNoteCardComponent(),
+              ),);
+    return noteComponentsList.length != 0 ? noteComponentsList : emptyList;
   }
 
   void handleSearch(String value) {

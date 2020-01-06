@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -54,10 +55,6 @@ class _ViewNotePageState extends State<ViewNotePage> {
             Padding(
               padding: const EdgeInsets.only(
                   left: 24.0, right: 24.0, top: 40.0, bottom: 16),
-              child: AnimatedOpacity(
-                opacity: headerShouldShow ? 1 : 0,
-                duration: Duration(milliseconds: 200),
-                curve: Curves.easeIn,
                 child: Text(
                   widget.currentNote.title,
                   style: TextStyle(
@@ -68,12 +65,9 @@ class _ViewNotePageState extends State<ViewNotePage> {
                   overflow: TextOverflow.visible,
                   softWrap: true,
                 ),
-              ),
+              
             ),
-            AnimatedOpacity(
-              duration: Duration(milliseconds: 500),
-              opacity: headerShouldShow ? 1 : 0,
-              child: Padding(
+            Padding(
                 padding: const EdgeInsets.only(left: 24),
                 child: Text(
                   DateFormat.yMd().add_jm().format(widget.currentNote.date),
@@ -81,13 +75,12 @@ class _ViewNotePageState extends State<ViewNotePage> {
                       fontWeight: FontWeight.w500, color: Colors.grey.shade500),
                 ),
               ),
-            ),
             Padding(
               padding: const EdgeInsets.only(
                   left: 24.0, top: 36, bottom: 24, right: 24),
               child: Text(
                 widget.currentNote.content,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
               ),
             )
           ],
@@ -97,35 +90,31 @@ class _ViewNotePageState extends State<ViewNotePage> {
               filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
               child: Container(
                 height: 80,
-                color: Theme.of(context).canvasColor.withOpacity(0.3),
+                color: Styles.LightAppBarColor,
                 child: SafeArea(
                   child: Row(
                     children: <Widget>[
                       IconButton(
-                        icon: Icon(Icons.arrow_back),
+                        icon: Icon(CupertinoIcons.back, color: Styles.lightIcon,),
                         onPressed: handleBack,
                       ),
                       Spacer(),
                       IconButton(
-                        icon: Icon(widget.currentNote.isImportant
-                            ? Icons.flag
-                            : Icons.outlined_flag),
-                        onPressed: () {
-                          markImportantAsDirty();
-                        },
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.delete_outline),
-                        onPressed: handleDelete,
-                      ),
-                      IconButton(
-                        icon: Icon(OMIcons.share),
+                        icon: Icon(OMIcons.share, color: Styles.lightIcon),
                         onPressed: handleShare,
                       ),
                       IconButton(
-                        icon: Icon(OMIcons.edit),
+                        icon: Icon(Icons.delete_outline, color: Styles.lightIcon),
+                        onPressed: handleDelete,
+                      ),
+                      IconButton(
+                        icon: Icon(OMIcons.edit, color: Styles.lightIcon),
                         onPressed: handleEdit,
                       ),
+                      IconButton(
+                        icon: Icon(OMIcons.add, color: Styles.lightIcon,),
+                        onPressed: (){},
+                      )
                     ],
                   ),
                 ),
@@ -171,11 +160,9 @@ class _ViewNotePageState extends State<ViewNotePage> {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return AlertDialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          return CupertinoAlertDialog(
             title: Text('노트 삭제'),
-            content: Text('주의: 이 노트는 영구적으로 삭제됩니다.'),
+            content: Text('작성하신 노트를 삭제 하시겠습니까?'),
             actions: <Widget>[
               FlatButton(
                 child: Text('삭제',

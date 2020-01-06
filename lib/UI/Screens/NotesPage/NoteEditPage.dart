@@ -124,16 +124,6 @@ class _EditNotePageState extends State<EditNotePage> {
                       ),
                       Spacer(),
                       IconButton(
-                        tooltip: 'Mark note as important',
-                        icon: Icon(currentNote.isImportant
-                            ? Icons.flag
-                            : Icons.outlined_flag),
-                        onPressed: titleController.text.trim().isNotEmpty &&
-                                contentController.text.trim().isNotEmpty
-                            ? markImportantAsDirty
-                            : null,
-                      ),
-                      IconButton(
                         icon: Icon(Icons.delete_outline),
                         onPressed: () {
                           handleDelete();
@@ -146,7 +136,7 @@ class _EditNotePageState extends State<EditNotePage> {
                         height: 42,
                         curve: Curves.decelerate,
                         child: RaisedButton.icon(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).primaryColor,
                           textColor: Colors.white,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
