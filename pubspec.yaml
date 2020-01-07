@@ -24,6 +24,7 @@ dependencies:
   hydrated_bloc: ^3.0.0
   json_annotation: ^3.0.1
   font_awesome_flutter: 8.5.0
+  flutter_speed_dial: 1.2.5
 
 
   flutter:
@@ -40,6 +41,7 @@ flutter:
 
   assets:
     - assets/bible/BibleDb.db
+    - assets/
   
   fonts:
     - family: Nanum Gothic

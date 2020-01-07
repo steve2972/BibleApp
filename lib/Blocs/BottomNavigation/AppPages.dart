@@ -1,7 +1,7 @@
 enum AppPage {
-  homePage,
-  profilePage,
+  //homePage,
   readerPage,
-  notePage,
+  profilePage,
+  //notePage,
   menuPage
 }
