@@ -1,4 +1,5 @@
 import 'package:bible_test2/UI/Models/Navigation/BottomNavigationBar.dart';
+import 'package:bible_test2/UI/Models/Profile/Prayer/PrayerList.dart';
 import 'package:bible_test2/UI/Models/Profile/VitalityGroup/GroupList.dart';
 import 'package:bible_test2/UI/Models/Profile/ProfileAppBar.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +29,10 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
           ProfileAppBar("송재헌", true, tabController),
           SliverFillRemaining(
             child: TabBarView(
+              physics: BouncingScrollPhysics(),
               controller: tabController,
               children: <Widget>[
-                Text("tab1"),
+                PrayerList(),
                 GroupList(),
                 Text("tab3"),
               ],

@@ -1,7 +1,6 @@
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
 
 class ProfileAppBar extends StatelessWidget {
   final String name;
@@ -21,12 +20,7 @@ class ProfileAppBar extends StatelessWidget {
       expandedHeight: 185,
       actions: <Widget>[
         IconButton(
-          icon: Icon(OMIcons.personAdd),
-          onPressed: (){},
-          color: Styles.lightIcon,
-        ),
-        IconButton(
-          icon: Icon(OMIcons.edit),
+          icon: Icon(Icons.search),
           onPressed: (){},
           color: Styles.lightIcon,
         ),

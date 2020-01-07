@@ -14,13 +14,6 @@ class MenuAppBar extends StatelessWidget {
       elevation: 0.5,
       floating: false,
       title: Text("Menu", style: Styles.mainTextBlack,),
-      actions: <Widget>[
-        IconButton(
-          icon: Icon(Icons.search),
-          onPressed: (){},
-          color: Styles.lightIcon,
-        ),
-      ],
     );
   }
 }

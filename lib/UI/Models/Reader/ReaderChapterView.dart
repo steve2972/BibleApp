@@ -63,6 +63,7 @@ class _ChapterViewState extends State<ChapterView> {
                       onPressed: () {
                         showModalBottomSheet(context: context, builder: (builder) {
                           return GridView.count(
+                            physics: BouncingScrollPhysics(),
                             childAspectRatio: 1.0,
                             padding: const EdgeInsets.all(12.0),
                             mainAxisSpacing: 12.0,
