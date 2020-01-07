@@ -72,6 +72,13 @@ class _NotesPageState extends State<NotesPage> {
         ),
       ],
           ),
+          SliverToBoxAdapter(
+            child: 
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text("신언노트를 작성하세요!", style: TextStyle(fontSize: 20),),
+            ),
+          ),
           SliverList(
             delegate: SliverChildListDelegate(
               [

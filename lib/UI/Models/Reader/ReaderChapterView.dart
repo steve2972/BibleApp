@@ -78,6 +78,7 @@ class _ChapterViewState extends State<ChapterView> {
                               child: Text('${index + 1}장', style: TextStyle(fontSize: 18),),
                               onPressed: (){
                                 _verseBloc.goTo(getChapterOffset(state.chapterNum, index+1));
+                                _scrollToTop();
                               })
                             )
                           );
