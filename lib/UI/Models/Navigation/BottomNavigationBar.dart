@@ -15,7 +15,7 @@ class BibleBottomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<AppPage>(
         stream: InheritedBlocs.of(context).navigationBloc.currentPage,
-        initialData: AppPage.homePage,
+        initialData: AppPage.readerPage,
         builder: (context, snapshot) {
           return BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
@@ -32,7 +32,7 @@ class BibleBottomNavigationBar extends StatelessWidget {
                       .navigationBloc
                       .nextPage
                       .add(AppPage.readerPage);
-                } else if (index == AppPage.homePage.index) {
+                } /*else if (index == AppPage.homePage.index) {
                   if (Navigator.of(context).canPop()) {
                     Navigator.of(context).pop();
                   }
@@ -40,7 +40,7 @@ class BibleBottomNavigationBar extends StatelessWidget {
                       .navigationBloc
                       .nextPage
                       .add(AppPage.homePage);
-                } else if (index == AppPage.profilePage.index) {
+                } */ else if (index == AppPage.profilePage.index) {
                   if (Navigator.of(context).canPop()) {
                     Navigator.of(context).pop();
                   }
@@ -48,7 +48,7 @@ class BibleBottomNavigationBar extends StatelessWidget {
                       .navigationBloc
                       .nextPage
                       .add(AppPage.profilePage);
-                } else if (index == AppPage.notePage.index) {
+                } /*else if (index == AppPage.notePage.index) {
                   if (Navigator.of(context).canPop()) {
                     Navigator.of(context).pop();
                   }
@@ -56,7 +56,7 @@ class BibleBottomNavigationBar extends StatelessWidget {
                       .navigationBloc
                       .nextPage
                       .add(AppPage.notePage);
-                } else if (index == AppPage.menuPage.index) {
+                } */else if (index == AppPage.menuPage.index) {
                   if (Navigator.of(context).canPop()) {
                     Navigator.of(context).pop();
                   }
@@ -75,14 +75,14 @@ class BibleBottomNavigationBar extends StatelessWidget {
                   title: Text("Profile"),
                   icon: Icon(CupertinoIcons.profile_circled)
                 ),
-                BottomNavigationBarItem(
+                /*BottomNavigationBarItem(
                   title: Text("성경"),
                   icon: Icon(OMIcons.book),
                 ),
                 BottomNavigationBarItem(
                   title: Text("북마크"),
                   icon: Icon(Icons.bookmark_border),
-                ),
+                ), */
                 BottomNavigationBarItem(
                   title: Text("Menu"),
                   icon: Icon(Icons.menu),
