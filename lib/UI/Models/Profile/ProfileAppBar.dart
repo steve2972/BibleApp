@@ -4,26 +4,41 @@ import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
 class ProfileAppBar extends StatelessWidget {
-  const ProfileAppBar({
-    Key key,
-  }) : super(key: key);
+  final String name;
+  final bool isMale;
+  final TabController controller;
+
+  ProfileAppBar(this.name, this.isMale, this.controller);
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: Colors.orange[800],
-      elevation: 0,
-      floating: false,
-      pinned: false,
-      title: Text("송재헌 형제", style: TextStyle(color: Colors.white),),
+      backgroundColor: Styles.LightAppBarColor,
+      elevation: 1.5,
+      pinned: true,
+      title: Text("$name ${isMale ? "형제" : "자매"}", style: TextStyle(color: Colors.black),),
       centerTitle: true,
+      expandedHeight: 185,
       actions: <Widget>[
+        IconButton(
+          icon: Icon(OMIcons.personAdd),
+          onPressed: (){},
+          color: Styles.lightIcon,
+        ),
         IconButton(
           icon: Icon(OMIcons.edit),
           onPressed: (){},
-          color: Colors.white,
+          color: Styles.lightIcon,
         ),
       ],
+      bottom: TabBar(
+        tabs: <Widget>[
+          new Tab(icon: Icon(Icons.list, color: Styles.lightIcon,),child: Text('기도제목', style: TextStyle(color: Colors.grey[800]),),),
+          new Tab(icon: Icon(Icons.group, color: Styles.lightIcon,),child: Text('활력그룹', style: TextStyle(color: Colors.grey[800]),),),
+          new Tab(icon: Icon(Icons.group_work, color: Styles.lightIcon,), child: Text('교회생활', style: TextStyle(color: Colors.grey[800]),),)
+        ],
+        controller: controller,
+      ),
     );
   }
 }
