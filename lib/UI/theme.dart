@@ -95,14 +95,12 @@ abstract class Styles {
   Color background_color = Colors.grey[200];
 
   static const TextStyle mainText = TextStyle(
-                fontFamily: 'ZillaSlab',
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w500,
                 fontSize: 26,
                 color: Color(0xFF2196F3));
 
   static const TextStyle mainTextBlack = TextStyle(
-                fontFamily: 'ZillaSlab',
-                fontWeight: FontWeight.w700,
+                fontWeight: FontWeight.w500,
                 fontSize: 26,
                 color: Colors.black);
 
