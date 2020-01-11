@@ -1,5 +1,6 @@
 import 'package:bible_test2/UI/Models/Reader/Bible/ChooseBookPage.dart';
 import 'package:bible_test2/UI/Models/Reader/ReaderChapterView.dart';
+import 'package:bible_test2/UI/Screens/ReaderPage/BooksListPage.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class ReaderEntryPage extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              _buildBookTile(context, Icons.local_library, "독서", Colors.indigo.withOpacity(0.7), ChapterView(1000)),
+              _buildBookTile(context, Icons.local_library, "도서", Colors.indigo.withOpacity(0.7), BookListPage()),
               _buildBookTile(context, Icons.playlist_add, "기타", Colors.green.withOpacity(0.6), ChapterView(1)),
             ],
           ),

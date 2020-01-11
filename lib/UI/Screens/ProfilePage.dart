@@ -69,6 +69,13 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
             labelStyle: TextStyle(fontSize: 16),
             onTap: (){}
           ),
+          SpeedDialChild(
+            child: Icon(Icons.share),
+            backgroundColor: Colors.yellow[700],
+            label: "공유하기",
+            labelStyle: TextStyle(fontSize: 16),
+            onTap: (){}
+          )
         ],
 
       ),

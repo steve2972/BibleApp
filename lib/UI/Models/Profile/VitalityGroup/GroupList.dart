@@ -42,9 +42,18 @@ class _GroupListState extends State<GroupList> with AutomaticKeepAliveClientMixi
             
               return Dismissible(
                 onDismissed: (direction) {
-                  setState(() {
-                    items.removeAt(index);
-                  });
+                  if (direction == DismissDirection.endToStart) {
+                    final snackBar = SnackBar(content: Text("Deleted"), backgroundColor: Colors.red, duration: Duration(seconds: 1),);
+                    Scaffold.of(context).showSnackBar(snackBar);
+                    setState(() {
+                      items.removeAt(index);
+                    });
+                  }
+                  else if (direction == DismissDirection.startToEnd) {
+                    final snackBar = SnackBar(content: Text("Archived"), backgroundColor: Colors.green,duration: Duration(seconds: 1),);
+                    Scaffold.of(context).showSnackBar(snackBar);
+                  }
+                  
                 },
                 key: Key(item),
                 child: GroupTile(groupData: 
@@ -58,6 +67,15 @@ class _GroupListState extends State<GroupList> with AutomaticKeepAliveClientMixi
         ),
       ],
     );
+  }
+  void _onReorder(int oldIndex, int newIndex) {
+    setState(() {
+      if(newIndex > oldIndex) {
+        newIndex -= 1;
+      }
+      //final PrayerModel item = items.removeAt(oldIndex);
+      //items.insert(newIndex, item);
+    });
   }
 
 }

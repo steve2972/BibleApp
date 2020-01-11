@@ -1,5 +1,6 @@
 import 'package:bible_test2/UI/Models/Profile/Prayer/PrayerModel.dart';
 import 'package:flutter/material.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class PrayerList extends StatefulWidget {
   @override
@@ -27,30 +28,96 @@ class PrayerListState extends State<PrayerList> with AutomaticKeepAliveClientMix
       (item) => ListTile(
         key: Key(item.content),
         title: Text(item.content),
-        leading: Icon(Icons.drag_handle),
-        trailing: IconButton(icon: Icon(Icons.more_vert), onPressed: (){},),
+        trailing: IconButton(icon: Icon(OMIcons.starBorder), color: Colors.yellow[700], onPressed: (){},),
       )
     ).toList();
-    return ReorderableListView(
-      header: Container(
-        alignment: Alignment.centerLeft,
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(32, 50, 0, 32),
-          child: Text("기도제목", style: TextStyle(color: Colors.black, fontSize: 24),),
+    return CustomScrollView(
+      physics: BouncingScrollPhysics(),
+      slivers: <Widget>[
+        SliverToBoxAdapter(child: Container(height: 50,),),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: EdgeInsets.only(left: 16),
+            child: Text("나의 기도제목", style: TextStyle(color: Colors.black, fontSize: 24),),
+          ),
         ),
-      ),
-      onReorder: _onReorder,
-      children: _prayerTiles,
+        SliverToBoxAdapter(child: Container(height: 32,),),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              final item = _prayerTiles[index];
+
+              return Dismissible(
+                confirmDismiss: (DismissDirection direction) async {
+                  return await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      if (direction == DismissDirection.endToStart) {
+                        return AlertDialog(
+                          title: const Text("Confirm"),
+                          content: const Text("Are you sure you wish to delete this item?"),
+                          actions: <Widget>[
+                            FlatButton(
+                              onPressed: () => Navigator.of(context).pop(true),
+                              child: const Text("DELETE")
+                            ),
+                            FlatButton(
+                              onPressed: () => Navigator.of(context).pop(false),
+                              child: const Text("CANCEL"),
+                            ),
+                          ],
+                        );
+                      }
+                      else if (direction == DismissDirection.startToEnd) {
+                        return AlertDialog(
+                          title: const Text("Confirm"),
+                          content: const Text("Are you sure you wish to archive this item?"),
+                          actions: <Widget>[
+                            FlatButton(
+                              onPressed: () => Navigator.of(context).pop(true),
+                              child: const Text("ARCHIVE")
+                            ),
+                            FlatButton(
+                              onPressed: () => Navigator.of(context).pop(false),
+                              child: const Text("CANCEL"),
+                            ),
+                          ],
+                        );
+                      }
+                      
+                    },
+                  );
+                },
+                onDismissed: (direction) {
+                  if (direction == DismissDirection.endToStart) {
+                    final snackBar = SnackBar(content: Text("Deleted"), backgroundColor: Colors.red, duration: Duration(seconds: 1),);
+                    Scaffold.of(context).showSnackBar(snackBar);
+                    setState(() {
+                      items.removeAt(index);
+                    });
+                  }
+                  else if (direction == DismissDirection.startToEnd) {
+                    final snackBar = SnackBar(content: Text("Archived"), backgroundColor: Colors.green,duration: Duration(seconds: 1),);
+                    Scaffold.of(context).showSnackBar(snackBar);
+                    setState(() {
+                      items.removeAt(index);
+                    });
+                  }
+                  
+                },
+                key: Key(item.title.toString()),
+                child: _prayerTiles[index],
+                background: Container(color: Colors.green, child: Icon(Icons.archive, color: Colors.white,),),
+                secondaryBackground: Container(color: Colors.red, child: Icon(Icons.delete, color: Colors.white,),),
+
+              );
+            },
+            childCount: _prayerTiles.length
+          )
+        )
+      ]
     );
   }
 
-  void _onReorder(int oldIndex, int newIndex) {
-    setState(() {
-      if(newIndex > oldIndex) {
-        newIndex -= 1;
-      }
-      final PrayerModel item = items.removeAt(oldIndex);
-      items.insert(newIndex, item);
-    });
-  }
+  
 }

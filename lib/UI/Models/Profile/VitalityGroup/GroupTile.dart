@@ -22,9 +22,10 @@ class GroupTile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           ListTile(
-            leading: IconButton(icon: Icon(Icons.star_border), color: Colors.yellow[700], onPressed: (){},),
             title: Text(groupData.title),
             subtitle: Text(groupData.people, softWrap: true,),
+            leading: Icon(Icons.drag_handle),
+            trailing: IconButton(icon: Icon(Icons.star_border), color: Colors.yellow[700], onPressed: (){},),
           ),
           Container(height: 1, color: Colors.grey[200],)
         ],

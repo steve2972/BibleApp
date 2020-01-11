@@ -33,5 +33,5 @@ int getNumChapters(int chapterNum) {
 int getChapterOffset(int from, int to) {
   int index = 0;
   while(from > Bible.chapters[index]) index++;
-  return to + Bible.chapters[index - 1];
+  return index != 0 ? to + Bible.chapters[index - 1] : to;
 }
