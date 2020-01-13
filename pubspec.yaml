@@ -41,7 +41,7 @@ flutter:
 
   assets:
     - assets/bible/BibleDb.db
-    - assets/
+    - assets/pictures/lake.png
   
   fonts:
     - family: Nanum Gothic
