@@ -34,12 +34,12 @@ class SettingsTile extends StatelessWidget {
           Row(
             children: <Widget>[
               buildSettingsTile(Icon(Icons.payment, color: Colors.black,), "구매목록", context),
-              buildSettingsTile(Icon(Icons.local_library, color: Colors.orange,), "사역의 말씀", context),
+              buildSettingsTile(Icon(Icons.scatter_plot, color: Colors.orange,), "나의통계", context),
             ],
           ),
           Row(
             children: <Widget>[
-              buildSettingsTile(Icon(Icons.event, color: Colors.pink,), "이벤트", context),
+              buildSettingsTile(Icon(Icons.event, color: Colors.red,), "교회일정", context),
               buildSettingsTile(Icon(Icons.bookmark, color: Colors.amber,), "저장됨", context),
             ],
           )

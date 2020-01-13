@@ -46,22 +46,12 @@ class _MyHomePageState extends State<MyHomePage> {
       stream: InheritedBlocs.of(context).navigationBloc.currentPage,
       builder: (context, currentPageSnapshot) {
         switch (currentPageSnapshot.data) {
-          /*
-          case AppPage.homePage:
-            return HomePage();
-            break;
-            */
           case AppPage.profilePage:
             return ProfilePage();
             break;
           case AppPage.readerPage:
             return ReaderPage();
             break;
-            /*
-          case AppPage.notePage:
-            return NotesPage();
-            break;
-            */
           case AppPage.menuPage:
             return MenuPage();
             break;

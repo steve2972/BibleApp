@@ -1,4 +1,5 @@
 import 'package:bible_test2/UI/Models/Navigation/BottomNavigationBar.dart';
+import 'package:bible_test2/UI/Models/Profile/Church/ChurchList.dart';
 import 'package:bible_test2/UI/Models/Profile/Prayer/PrayerList.dart';
 import 'package:bible_test2/UI/Models/Profile/VitalityGroup/GroupList.dart';
 import 'package:bible_test2/UI/Models/Profile/ProfileAppBar.dart';
@@ -34,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
               children: <Widget>[
                 PrayerList(),
                 GroupList(),
-                Text("tab3"),
+                ChurchList(),
               ],
             ),
           )
