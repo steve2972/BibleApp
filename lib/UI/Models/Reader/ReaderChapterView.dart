@@ -88,7 +88,7 @@ class _ChapterViewState extends State<ChapterView> {
                     ]
                   ),
                   leading: IconButton(
-                    icon: Icon(CupertinoIcons.back),
+                    icon: Icon(Icons.arrow_back_ios),
                     color: Styles.lightIcon,
                     onPressed: () {
                       Navigator.pop(context);

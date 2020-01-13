@@ -1,6 +1,7 @@
 import 'package:bible_test2/UI/Models/Reader/Bible/ChooseBookPage.dart';
-import 'package:bible_test2/UI/Models/Reader/ReaderChapterView.dart';
 import 'package:bible_test2/UI/Screens/ReaderPage/BooksListPage.dart';
+import 'package:bible_test2/UI/Screens/ReaderPage/HymnalEntryPage.dart';
+import 'package:bible_test2/UI/Screens/ReaderPage/OtherPage.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,6 @@ class ReaderEntryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          color: Styles.lightIcon,
-          onPressed: (){},
-        ),
         backgroundColor: Styles.LightAppBarColor,
         elevation: 0,
       ),
@@ -29,13 +25,13 @@ class ReaderEntryPage extends StatelessWidget {
           Row(
             children: <Widget>[
               _buildBookTile(context, Icons.collections_bookmark, "성경", Colors.deepOrange.withOpacity(0.7), ChooseBookPage()),
-              _buildBookTile(context, Icons.music_note, "찬송가", Colors.blue.withOpacity(0.6), ChapterView(998)),
+              _buildBookTile(context, Icons.music_note, "찬송가", Colors.blue.withOpacity(0.6), HymnalEntryPage()),
             ],
           ),
           Row(
             children: <Widget>[
               _buildBookTile(context, Icons.local_library, "도서", Colors.indigo.withOpacity(0.7), BookListPage()),
-              _buildBookTile(context, Icons.playlist_add, "기타", Colors.green.withOpacity(0.6), ChapterView(1)),
+              _buildBookTile(context, Icons.playlist_add, "기타", Colors.green.withOpacity(0.6), OtherPage()),
             ],
           ),
           Container(height: 100,)
