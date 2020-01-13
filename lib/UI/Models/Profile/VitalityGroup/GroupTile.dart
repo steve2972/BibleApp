@@ -16,7 +16,7 @@ class GroupTile extends StatelessWidget {
     //String neatDate = DateFormat.yMd().add_jm().format(groupData.date);
     //String meetingDate = DateFormat.yMd().add_jm().format(groupData.meetingTime);
     return FlatButton(
-      onPressed: (){},
+      onPressed: () => onTapAction,
       child: 
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +24,6 @@ class GroupTile extends StatelessWidget {
           ListTile(
             title: Text(groupData.title),
             subtitle: Text(groupData.people, softWrap: true,),
-            leading: Icon(Icons.drag_handle),
             trailing: IconButton(icon: Icon(Icons.star_border), color: Colors.yellow[700], onPressed: (){},),
           ),
           Container(height: 1, color: Colors.grey[200],)

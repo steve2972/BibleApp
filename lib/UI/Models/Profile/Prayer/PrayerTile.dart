@@ -1,21 +1,20 @@
 import 'package:bible_test2/UI/Models/Profile/Prayer/PrayerModel.dart';
 import 'package:flutter/material.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class PrayerTile extends StatelessWidget {
   final PrayerModel model;
-  final Function(PrayerModel model) onTapAction;
 
   const PrayerTile({
     this.model,
-    this.onTapAction,
-    Key key
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      title: Text(model.content),
-      
-    );
+        key: Key(model.content),
+        title: Text(model.content),
+        trailing: IconButton(icon: Icon(OMIcons.starBorder), color: Colors.yellow[700], onPressed: (){},),
+      );
   }
 }
