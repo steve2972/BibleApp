@@ -5,10 +5,10 @@ import 'package:outline_material_icons/outline_material_icons.dart';
 
 Widget booksAppBar(BuildContext context){
     return AppBar(
-      elevation: 1,
+      elevation: 0,
       title: Text("Spiritual Books", style: TextStyle(color: Colors.blue)),
         leading: IconButton(
-          icon: Icon(CupertinoIcons.back),
+          icon: Icon(Icons.arrow_back_ios),
           color: Colors.blue,
           onPressed: (){
             Navigator.pop(context);

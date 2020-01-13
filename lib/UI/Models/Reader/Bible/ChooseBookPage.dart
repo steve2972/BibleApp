@@ -12,7 +12,7 @@ class ChooseBookPage extends StatelessWidget {
         elevation: 0,
         title: Text("Recovery Version", style: TextStyle(color: Colors.blue),),
         backgroundColor: Styles.LightAppBarColor,
-        leading: IconButton(icon: Icon(CupertinoIcons.back, color: Theme.of(context).primaryColor,)
+        leading: IconButton(icon: Icon(Icons.arrow_back_ios, color: Theme.of(context).primaryColor,)
         , onPressed: () {Navigator.pop(context);},),
         
       ),

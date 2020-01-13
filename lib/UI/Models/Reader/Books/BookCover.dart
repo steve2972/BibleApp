@@ -10,7 +10,7 @@ class BookCover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final assetPath = 'assets/pictures/material_design.png';
+    final assetPath = 'assets/pictures/lake.png';
 
     return Container(
       height: height,
