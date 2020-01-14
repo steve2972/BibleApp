@@ -1,4 +1,5 @@
-import 'package:bible_test2/UI/Screens/SettingsPage/SettingsPage.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/HelpAndSupport/AboutAppPage.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/SettingsPage.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,23 +13,21 @@ class SettingsBar extends StatelessWidget {
         children: <Widget>[
           ExpansionTile(
             leading: Icon(Icons.settings),
-            title: Text("Settings & Privacy", style: Styles.titleText,),
+            title: Text("기본설정/보안", style: Styles.titleText,),
             children: <Widget>[
               createSettingsBar(
                 Icon(CupertinoIcons.profile_circled, color: Colors.grey[500],), "환경설정", SettingsPage(), context),
               createSettingsBar(Icon(Icons.timer, color: Colors.orange,), "사용 시간", null, context),
-              createSettingsBar(Icon(Icons.exit_to_app, color: Colors.black,), "로그아웃", null, context),
+              createSettingsBar(Icon(Icons.exit_to_app, color: Colors.blue,), "로그아웃", null, context),
 
             ],
           ),
           ExpansionTile(
             leading: Icon(Icons.help),
-            title: Text("Help & Support", style: Styles.titleText,),
+            title: Text("고객센터/도움말", style: Styles.titleText,),
             children: <Widget>[
-              createSettingsBar(Icon(Icons.chat_bubble, color: Colors.lightBlueAccent,), "도움 메시지", null, context),
-              createSettingsBar(Icon(Icons.inbox, color: Colors.green,), "받은 메일함", null, context),
               createSettingsBar(Icon(Icons.list, color: Colors.red,), "FAQ", null, context),
-              createSettingsBar(Icon(Icons.help_outline, color: Colors.pink,), "앱에 대하여", null, context),
+              createSettingsBar(Icon(Icons.help_outline, color: Colors.green,), "앱에 대하여", AboutAppPage(), context),
               createSettingsBar(Icon(Icons.warning, color: Colors.yellow[800],), "문제 신고", null, context),
 
             ],

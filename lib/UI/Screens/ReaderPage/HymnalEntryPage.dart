@@ -144,7 +144,7 @@ class HymnalEntryPageState extends State<HymnalEntryPage> {
   Widget _buildHeaderWidget(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.music_note, color: Styles.LightAppBarColor,),
-      title: Center(child: Text("$title", style: TextStyle(fontSize: 32),)),
+      title: Center(child: Text("$title", style: TextStyle(fontSize: 36),)),
       trailing: new PopupMenuButton<String>(
           onSelected: (String newValue) {
             setState(() {

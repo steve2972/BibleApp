@@ -1,8 +1,10 @@
 import 'package:bible_test2/UI/Models/Navigation/BottomNavigationBar.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/HelpAndSupport/AboutAppPage.dart';
 import 'package:bible_test2/UI/Widgets/filler.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bible_test2/UI/Models/Menu/SettingsPage/SettingsPageAppBar.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class SettingsPage extends StatelessWidget {
 
@@ -14,9 +16,9 @@ class SettingsPage extends StatelessWidget {
         slivers: <Widget>[
           SettingsPageAppBar(),
           accountSettings(context),
-          Filler(),
+          SliverToBoxAdapter(child: Filler(),),
           securitySettings(context),
-          Filler(),
+          SliverToBoxAdapter(child: Filler(),),
           serviceInformation(context)
 
         ],
@@ -74,6 +76,7 @@ class SettingsPage extends StatelessWidget {
           children: <Widget>[
             _buildTitle("서비스 정보", "서비스 이용약관 및 사용 계약을 참고하세요."),
             _buildButton(context, Icons.notification_important, "공지사항", "개발자가 직접 공지하는 알림", null),
+            _buildButton(context, Icons.help_outline, "고객센터", "문제 문의와 앱에 관련한 정보", AboutAppPage()),
           ],
         ),
       ),
