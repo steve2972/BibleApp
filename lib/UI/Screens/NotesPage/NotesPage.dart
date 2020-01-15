@@ -55,29 +55,27 @@ class _NotesPageState extends State<NotesPage> {
         slivers: <Widget>[
           SliverAppBar(
             backgroundColor: Styles.LightAppBarColor,
-      elevation: 1,
-      pinned: true,
-      //centerTitle: true,
-      title: Text("Notes", style: Styles.mainTextBlack),
-      actions: <Widget>[
-
-        IconButton(
-          icon: Icon(Icons.add),
-          color: Styles.lightIcon,
-          onPressed: () {Navigator.push(
-        context,
-        CupertinoPageRoute(
-            builder: (context) =>
-                EditNotePage(triggerRefetch: refetchNotesFromDB)));},
-        ),
-      ],
-          ),
-          SliverToBoxAdapter(
-            child: 
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text("신언노트를 작성하세요!", style: TextStyle(fontSize: 20),),
+            elevation: 1,
+            pinned: true,
+            //centerTitle: true,
+            leading: IconButton(
+              onPressed: (){Navigator.pop(context);},
+              icon: Icon(Icons.arrow_back_ios),
+              color: Styles.lightIcon,
             ),
+            title: Text("신언 노트", style: TextStyle(color: Colors.black),),
+            actions: <Widget>[
+            
+              IconButton(
+                icon: Icon(Icons.add),
+                color: Styles.lightIcon,
+                onPressed: () {Navigator.push(
+              context,
+              CupertinoPageRoute(
+                  builder: (context) =>
+                      EditNotePage(triggerRefetch: refetchNotesFromDB)));},
+              ),
+            ],
           ),
           SliverList(
             delegate: SliverChildListDelegate(
