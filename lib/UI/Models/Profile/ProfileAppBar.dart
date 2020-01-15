@@ -17,7 +17,7 @@ class ProfileAppBar extends StatelessWidget {
       pinned: true,
       title: Text("$name ${isMale ? "형제" : "자매"}", style: TextStyle(color: Colors.black),),
       centerTitle: true,
-      expandedHeight: 185,
+      expandedHeight: 165,
       actions: <Widget>[
         IconButton(
           icon: Icon(Icons.search),

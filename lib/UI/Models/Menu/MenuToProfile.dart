@@ -23,14 +23,15 @@ class MenuToProfile extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Steven Song",
+                    "송재헌 형제",
                     style: Styles.titleText,
                   ),
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "View Profile"
+                    "steve2972@gmail.com",
+                    style: TextStyle(color: Colors.grey),
                   ),
                 ),
               ],

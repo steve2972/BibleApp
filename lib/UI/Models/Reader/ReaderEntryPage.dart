@@ -23,12 +23,14 @@ class ReaderEntryPage extends StatelessWidget {
           Divider(color: Colors.red, indent: 110, endIndent: 110,thickness: 2,),
           Spacer(),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               _buildBookTile(context, Icons.collections_bookmark, "성경", Colors.deepOrange.withOpacity(0.7), ChooseBookPage()),
               _buildBookTile(context, Icons.music_note, "찬송가", Colors.blue.withOpacity(0.6), HymnalEntryPage()),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               _buildBookTile(context, Icons.local_library, "도서", Colors.indigo.withOpacity(0.7), BookListPage()),
               _buildBookTile(context, Icons.playlist_add, "기타", Colors.green.withOpacity(0.6), OtherPage()),
@@ -48,7 +50,7 @@ class ReaderEntryPage extends StatelessWidget {
       },
       child: Container(
         height: 100,
-        width: 160,
+        width: MediaQuery.of(context).size.width * 0.4,
         child: Stack(
           children: <Widget>[
             Container(

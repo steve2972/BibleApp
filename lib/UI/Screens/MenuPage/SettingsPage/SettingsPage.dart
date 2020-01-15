@@ -4,7 +4,6 @@ import 'package:bible_test2/UI/Widgets/filler.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bible_test2/UI/Models/Menu/SettingsPage/SettingsPageAppBar.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
 
 class SettingsPage extends StatelessWidget {
 
@@ -97,25 +96,11 @@ class SettingsPage extends StatelessWidget {
     return FlatButton(
       onPressed: () {Navigator.push(context, CupertinoPageRoute(builder: (context) => route));},
       child: 
-      Padding(
-        padding: const EdgeInsets.only(top: 8.0, bottom: 8),
-        child: Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 16),
-              child: Icon(icon, size: 32,color: Colors.grey[800],),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(title, style: TextStyle(fontSize: 16),),
-                Text(subTitle, style: TextStyle(color: Colors.grey[500]),)
-              ],
-            )
-
-          ],
+      ListTile(
+          leading: Icon(icon, size: 32,color: Colors.grey[800],),
+          title: Text(title, style: TextStyle(fontSize: 16),),
+          subtitle: Text(subTitle, style: TextStyle(color: Colors.grey[500]),)
         ),
-      ),
     );
   }
 }

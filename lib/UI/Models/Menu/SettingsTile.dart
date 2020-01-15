@@ -1,23 +1,13 @@
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/CalendarPage.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/StatisticsPage.dart';
+import 'package:bible_test2/UI/Widgets/CupertinoNavigate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingsTile extends StatelessWidget {
   const SettingsTile({
-    //this.settingTileColor,
-    //this.settingTileIcon,
-    //this.settingTileString,
-    //this.settingTileColor2,
-    //this.settingTileIcon2,
-    //this.settingTileString2,
     Key key
   }) : super(key: key);
-
-  //final Icon settingTileIcon;
-  //final Color settingTileColor;
-  //final String settingTileString;
-  //final Icon settingTileIcon2;
-  //final Color settingTileColor2;
-  //final String settingTileString2;
 
   @override
   Widget build(BuildContext context) {
@@ -27,23 +17,23 @@ class SettingsTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              buildSettingsTile(Icon(Icons.people, color: Colors.green,), "지체들", context),
-              buildSettingsTile(Icon(Icons.home, color: Colors.blue,), "지역생활", context),
+              buildSettingsTile(Icon(Icons.people, color: Colors.green,), "지체들", context, null),
+              buildSettingsTile(Icon(Icons.home, color: Colors.blue,), "지역생활", context, null),
             ],
             
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              buildSettingsTile(Icon(Icons.payment, color: Colors.black,), "구매목록", context),
-              buildSettingsTile(Icon(Icons.scatter_plot, color: Colors.orange,), "나의통계", context),
+              buildSettingsTile(Icon(Icons.payment, color: Colors.black,), "구매목록", context, null),
+              buildSettingsTile(Icon(Icons.scatter_plot, color: Colors.orange,), "나의통계", context, StatisticsPage()),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              buildSettingsTile(Icon(Icons.event, color: Colors.red,), "교회일정", context),
-              buildSettingsTile(Icon(Icons.bookmark, color: Colors.amber,), "저장됨", context),
+              buildSettingsTile(Icon(Icons.event, color: Colors.red,), "교회일정", context, CalendarPage()),
+              buildSettingsTile(Icon(Icons.bookmark, color: Colors.amber,), "저장됨", context, null),
             ],
           )
         ],
@@ -52,7 +42,7 @@ class SettingsTile extends StatelessWidget {
   }
 
   Widget buildSettingsTile(Icon icon,
-                        String string, BuildContext context) {
+                        String string, BuildContext context, Widget route) {
     return CupertinoButton(
       child: Container(
         height: 60,
@@ -74,8 +64,7 @@ class SettingsTile extends StatelessWidget {
                 style: TextStyle(
                   color: Colors.grey[800],
                   fontSize: 18,
-                  fontFamily: 'Nanum Gothic'
-                  //fontWeight: FontWeight.w600
+                  fontWeight: FontWeight.w400
                 )
               ),
             ],
@@ -83,21 +72,8 @@ class SettingsTile extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        showCupertinoDialog(
-          context: context,
-          builder: (BuildContext context) => CupertinoAlertDialog(
-            title: Text("$string is clicked"),
-            actions: <Widget>[
-              CupertinoDialogAction(
-                child: const Text("OK"),
-                onPressed: () {
-                  Navigator.pop(context, "OK");
-                },
-              )
-            ],
-          )
-        );
-      },
+        cupertinoNavigate(context, route);
+      }
     );
   }
 }

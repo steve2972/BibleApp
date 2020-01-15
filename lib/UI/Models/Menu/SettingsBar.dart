@@ -1,5 +1,6 @@
 import 'package:bible_test2/UI/Screens/MenuPage/HelpAndSupport/AboutAppPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/SettingsPage.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/StatisticsPage.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,7 +18,7 @@ class SettingsBar extends StatelessWidget {
             children: <Widget>[
               createSettingsBar(
                 Icon(CupertinoIcons.profile_circled, color: Colors.grey[500],), "환경설정", SettingsPage(), context),
-              createSettingsBar(Icon(Icons.timer, color: Colors.orange,), "사용 시간", null, context),
+              createSettingsBar(Icon(Icons.timer, color: Colors.orange,), "사용 시간", StatisticsPage(), context),
               createSettingsBar(Icon(Icons.exit_to_app, color: Colors.blue,), "로그아웃", null, context),
 
             ],

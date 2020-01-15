@@ -64,9 +64,9 @@ class ChurchListState extends State<ChurchList> with AutomaticKeepAliveClientMix
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,),
-                Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,),
-                Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,)
+                ListTile(title: Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,)),
+                ListTile(title: Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,)),
+                ListTile(title: Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,))
               ],
             ),
           ),
@@ -84,9 +84,9 @@ class ChurchListState extends State<ChurchList> with AutomaticKeepAliveClientMix
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,),
-                Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,),
-                Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,)
+                ListTile(title: Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,)),
+                ListTile(title: Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,)),
+                ListTile(title: Text("주요공지는 여기 란에 들어갑니다.", style: Styles.readTextBlack,))
               ],
             ),
           ),
@@ -104,9 +104,9 @@ class ChurchListState extends State<ChurchList> with AutomaticKeepAliveClientMix
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text("성도소식은 여기 란에 들어갑니다.", style: Styles.readTextBlack,),
-                Text("성도소식은 여기 란에 들어갑니다.", style: Styles.readTextBlack,),
-                Text("성도소식은 여기 란에 들어갑니다.", style: Styles.readTextBlack,)
+                ListTile(title: Text("성도소식은 여기 란에 들어갑니다.", style: Styles.readTextBlack,)),
+                ListTile(title: Text("성도소식은 여기 란에 들어갑니다.", style: Styles.readTextBlack,)),
+                ListTile(title: Text("성도소식은 여기 란에 들어갑니다.", style: Styles.readTextBlack,))
               ],
             ),
           ),
