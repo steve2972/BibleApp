@@ -25,6 +25,7 @@ class SettingsTile extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               buildSettingsTile(Icon(Icons.people, color: Colors.green,), "지체들", context),
               buildSettingsTile(Icon(Icons.home, color: Colors.blue,), "지역생활", context),
@@ -32,12 +33,14 @@ class SettingsTile extends StatelessWidget {
             
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               buildSettingsTile(Icon(Icons.payment, color: Colors.black,), "구매목록", context),
               buildSettingsTile(Icon(Icons.scatter_plot, color: Colors.orange,), "나의통계", context),
             ],
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               buildSettingsTile(Icon(Icons.event, color: Colors.red,), "교회일정", context),
               buildSettingsTile(Icon(Icons.bookmark, color: Colors.amber,), "저장됨", context),
@@ -53,7 +56,7 @@ class SettingsTile extends StatelessWidget {
     return CupertinoButton(
       child: Container(
         height: 60,
-        width: 160,
+        width: MediaQuery.of(context).size.width * 0.4,
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(12)
