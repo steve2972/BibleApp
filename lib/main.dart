@@ -1,13 +1,14 @@
 import 'package:bible_test2/UI/Screens/MenuPage.dart';
 import 'package:bible_test2/UI/Screens/ProfilePage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'Blocs/InheritedBlocs.dart';
 import 'Blocs/BottomNavigation/NavigationBloc.dart';
 import 'Blocs/BottomNavigation/AppPages.dart';
 import 'UI/Screens/pages.dart';
 import 'UI/theme.dart';
 
-void main() async {
+Future main() async {
   runApp(MyApp(
     bottomNavigationBloc: NavigationBloc,
   ));
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+      ]);
     return InheritedBlocs(
       navigationBloc: NavigationBloc(),
       child: MaterialApp(
