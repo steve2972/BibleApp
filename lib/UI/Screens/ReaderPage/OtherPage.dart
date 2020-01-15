@@ -39,7 +39,7 @@ class OtherPage extends StatelessWidget {
       child: ListTile(
         leading: Icon(icon),
         title: Text(label),
-        trailing: Icon(Icons.arrow_forward_ios),
+        trailing: Icon(Icons.arrow_forward_ios, size: 14,),
       ),
     );
   }
