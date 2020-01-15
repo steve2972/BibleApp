@@ -1,5 +1,8 @@
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/CalendarPage.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/ChurchLifePage.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/FriendsPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/PurchasePage.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/SavedPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/StatisticsPage.dart';
 import 'package:bible_test2/UI/Widgets/CupertinoNavigate.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,8 +21,8 @@ class SettingsTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              buildSettingsTile(Icon(Icons.people, color: Colors.green,), "지체들", context, null),
-              buildSettingsTile(Icon(Icons.home, color: Colors.blue,), "지역생활", context, null),
+              buildSettingsTile(Icon(Icons.people, color: Colors.green,), "지체들", context, FriendsPage()),
+              buildSettingsTile(Icon(Icons.home, color: Colors.blue,), "지역생활", context, ChurchLifePage()),
             ],
             
           ),
@@ -34,7 +37,7 @@ class SettingsTile extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               buildSettingsTile(Icon(Icons.event, color: Colors.red,), "교회일정", context, CalendarPage()),
-              buildSettingsTile(Icon(Icons.bookmark, color: Colors.amber,), "저장됨", context, null),
+              buildSettingsTile(Icon(Icons.bookmark, color: Colors.amber,), "저장됨", context, SavedPage()),
             ],
           )
         ],

@@ -54,7 +54,7 @@ class AboutAppPage extends StatelessWidget {
         child: ListTile(
           contentPadding: EdgeInsets.only(left: 16, right: 16),
           title: Text(title, style: TextStyle(fontSize: 16),), 
-          trailing: Icon(Icons.arrow_forward_ios, color: Styles.lightIcon,),
+          trailing: Icon(Icons.arrow_forward_ios, color: Styles.lightIcon, size: 14,),
         ),
       ),
     );

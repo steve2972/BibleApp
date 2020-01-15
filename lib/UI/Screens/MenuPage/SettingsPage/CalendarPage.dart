@@ -98,9 +98,9 @@ class _CalendarPageState extends State<CalendarPage>{
       },
       calendarStyle: CalendarStyle(
         markersMaxAmount: 1,
-        markersColor: Colors.red,
+        markersColor: Colors.grey,
         todayColor: Colors.grey[50],
-        selectedColor: Colors.blue[400],
+        selectedColor: Colors.blue[300],
         todayStyle: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 20,
