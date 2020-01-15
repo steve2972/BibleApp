@@ -1,5 +1,6 @@
 import 'package:bible_test2/UI/Models/Profile/Prayer/PrayerModel.dart';
 import 'package:bible_test2/UI/Models/Profile/Prayer/PrayerTile.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 
@@ -50,33 +51,33 @@ class PrayerListState extends State<PrayerList> with AutomaticKeepAliveClientMix
                     context: context,
                     builder: (BuildContext context) {
                       if (direction == DismissDirection.endToStart) {
-                        return AlertDialog(
-                          title: const Text("Confirm"),
-                          content: const Text("Are you sure you wish to delete this item?"),
+                        return CupertinoAlertDialog(
+                          title: const Text("확인"),
+                          content: const Text("위 기도제목을 정말 삭제하시겠습니까?"),
                           actions: <Widget>[
                             FlatButton(
                               onPressed: () => Navigator.of(context).pop(true),
-                              child: const Text("DELETE")
+                              child: const Text("삭제", style: TextStyle(color: Colors.red),)
                             ),
                             FlatButton(
                               onPressed: () => Navigator.of(context).pop(false),
-                              child: const Text("CANCEL"),
+                              child: const Text("아니오", style: TextStyle(color: Colors.blue),),
                             ),
                           ],
                         );
                       }
                       else if (direction == DismissDirection.startToEnd) {
-                        return AlertDialog(
-                          title: const Text("Confirm"),
-                          content: const Text("Are you sure you wish to archive this item?"),
+                        return CupertinoAlertDialog(
+                          title: const Text("확인"),
+                          content: const Text("위 기도제목을 정말 보관하시겠습니까?"),
                           actions: <Widget>[
-                            FlatButton(
+                            CupertinoButton(
                               onPressed: () => Navigator.of(context).pop(true),
-                              child: const Text("ARCHIVE")
+                              child: const Text("보관함", style: TextStyle(color: Colors.green),)
                             ),
-                            FlatButton(
+                            CupertinoButton(
                               onPressed: () => Navigator.of(context).pop(false),
-                              child: const Text("CANCEL"),
+                              child: const Text("아니오", style: TextStyle(color: Colors.blue),),
                             ),
                           ],
                         );

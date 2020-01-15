@@ -1,4 +1,5 @@
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/CalendarPage.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/PurchasePage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/StatisticsPage.dart';
 import 'package:bible_test2/UI/Widgets/CupertinoNavigate.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +26,7 @@ class SettingsTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              buildSettingsTile(Icon(Icons.payment, color: Colors.black,), "구매목록", context, null),
+              buildSettingsTile(Icon(Icons.payment, color: Colors.black,), "구매방법", context, PurchasePage()),
               buildSettingsTile(Icon(Icons.scatter_plot, color: Colors.orange,), "나의통계", context, StatisticsPage()),
             ],
           ),
