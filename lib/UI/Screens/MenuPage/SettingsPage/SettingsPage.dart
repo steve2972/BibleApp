@@ -1,5 +1,6 @@
 import 'package:bible_test2/UI/Models/Navigation/BottomNavigationBar.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/HelpAndSupport/AboutAppPage.dart';
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/PurchasePage.dart';
 import 'package:bible_test2/UI/Widgets/filler.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class SettingsPage extends StatelessWidget {
               
             ),
             _buildButton(context, CupertinoIcons.profile_circled, "개인정보 설정", "이름, 이메일 주소 및 연락처를 수정하세요", null),
-            _buildButton(context, Icons.payment, "구매방법 및 카드 관리", "카드관리 및 구매기록을 확인하세요", null),
+            _buildButton(context, Icons.payment, "구매방법 및 카드 관리", "카드관리 및 구매기록을 확인하세요", PurchasePage()),
             _buildButton(context, Icons.cast_connected, "연결된 계정", "SNS으로 연동된 계정을 한눈으로 확인하세요.", null),
           ],
         ),

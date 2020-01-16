@@ -1,6 +1,8 @@
+import 'package:bible_test2/UI/Widgets/CupertinoNavigate.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:bible_test2/UI/Screens/LoginPage/ProfileEditPage.dart';
 
 class MenuToProfile extends StatelessWidget {
   @override
@@ -15,7 +17,7 @@ class MenuToProfile extends StatelessWidget {
               icon: Icon(CupertinoIcons.profile_circled),
               color: Styles.lightIcon,
               iconSize: 60,
-              onPressed: (){},
+              onPressed: (){cupertinoNavigate(context, ProfileEditPage());},
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

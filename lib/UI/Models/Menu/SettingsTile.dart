@@ -21,7 +21,7 @@ class SettingsTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              buildSettingsTile(Icon(Icons.people, color: Colors.green,), "지체들", context, FriendsPage()),
+              buildSettingsTile(Icon(Icons.people, color: Colors.green,), "동반자들", context, FriendsPage()),
               buildSettingsTile(Icon(Icons.home, color: Colors.blue,), "지역생활", context, ChurchLifePage()),
             ],
             
