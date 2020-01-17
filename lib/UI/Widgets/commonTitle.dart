@@ -8,3 +8,10 @@ Widget buildCommonTitleSliver(String title) {
     ),
   );
 }
+
+Widget buildCommonTitleWidget(String title) {
+  return Padding(
+    padding: EdgeInsets.only(left: 16.0, right: 16, top: 32),
+    child: Text(title, style: TextStyle(fontSize: 22, color: Colors.black, fontWeight: FontWeight.bold),),
+  );
+}

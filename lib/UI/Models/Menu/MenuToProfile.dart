@@ -9,7 +9,7 @@ class MenuToProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: FlatButton(
-        onPressed: (){},
+        onPressed: (){cupertinoNavigate(context, ProfileEditPage());},
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[

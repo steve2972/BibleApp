@@ -1,3 +1,4 @@
+import 'package:bible_test2/UI/Screens/LoginPage/LoginPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/HelpAndSupport/AboutAppPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/SettingsPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/StatisticsPage.dart';
@@ -19,7 +20,7 @@ class SettingsBar extends StatelessWidget {
               createSettingsBar(
                 Icon(CupertinoIcons.profile_circled, color: Colors.grey[500],), "환경설정", SettingsPage(), context),
               createSettingsBar(Icon(Icons.timer, color: Colors.orange,), "사용 시간", StatisticsPage(), context),
-              createSettingsBar(Icon(Icons.exit_to_app, color: Colors.blue,), "로그아웃", null, context),
+              createSettingsBar(Icon(Icons.exit_to_app, color: Colors.blue,), "로그아웃", LoginPage(), context),
 
             ],
           ),
@@ -39,6 +40,41 @@ class SettingsBar extends StatelessWidget {
   }
 
   Widget createSettingsBar(Icon icon, 
+            String string, Widget route, BuildContext context) {
+    return CupertinoButton(
+      child: Container(
+        height: 60,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.grey[50],
+          borderRadius: BorderRadius.circular(12)
+        ),
+        child: Container(
+          margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(right: 8),
+                child: icon,
+              ),
+              Text(
+                "$string",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
+                )
+              ),
+            ],
+          ),
+        ),
+      ),
+      onPressed: () {
+        Navigator.push(context, CupertinoPageRoute(builder: (context) => route));
+      },
+    );
+  }
+
+  Widget createLogoutBar(Icon icon, 
             String string, Widget route, BuildContext context) {
     return CupertinoButton(
       child: Container(
