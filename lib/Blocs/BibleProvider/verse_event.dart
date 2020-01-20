@@ -28,3 +28,18 @@ class GetVerseNum extends VerseEvent {
   
   GetVerseNum(this.curChapter) : super(chapterNum: curChapter);
 }
+
+/* Korean Bible Verse Events */
+
+class GetKorVerse extends VerseEvent {
+  final int number;
+
+  GetKorVerse({this.number}) : super(chapterNum: number);
+}
+
+class IncrementKorChapter extends VerseEvent {
+  final bool isIncrement;
+  final int curChapter;
+
+  IncrementKorChapter({this.isIncrement, this.curChapter}) : super(chapterNum: curChapter);
+}
