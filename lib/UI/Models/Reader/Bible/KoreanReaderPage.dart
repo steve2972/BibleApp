@@ -3,6 +3,7 @@ import 'package:bible_test2/Blocs/BibleProvider/verse_event.dart';
 import 'package:bible_test2/Blocs/BibleProvider/verse_state.dart';
 import 'package:bible_test2/Blocs/Functions/chapterToBook.dart';
 import 'package:bible_test2/Repositories/Bible/BibleList.dart';
+import 'package:bible_test2/UI/Models/Reader/Bible/KorVerseWidget.dart';
 import 'package:bible_test2/UI/Models/Reader/VerseWidget.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/cupertino.dart';
@@ -106,7 +107,8 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      return VerseWidget(verse: state.verses[index],);
+                      return KorVerseWidget(verse: state.verses[index],);
+
                   }, childCount: state.verses.length),
                 ),
                 SliverToBoxAdapter(child: Container(height: 45,),),
