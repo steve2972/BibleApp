@@ -1,16 +1,5 @@
-# bible_test2
+# 복음서원 성경 어플
 
-A new Flutter project.
+새로 개정된 구약 및 신약 회복역이 출시됨으로 모바일 성경의 필요성을 느껴 어플리케이션을 개발했습니다.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
