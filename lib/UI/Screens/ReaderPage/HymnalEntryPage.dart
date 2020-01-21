@@ -1,3 +1,4 @@
+import 'package:bible_test2/Repositories/Hymnal/HymnalSearch.dart';
 import 'package:bible_test2/UI/Models/Reader/Hymnal/HymnalAppBar.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/material.dart';
@@ -41,34 +42,37 @@ class HymnalEntryPageState extends State<HymnalEntryPage> {
           Container(height: 32,),
           _buildHeaderWidget(context),
           Container(height: 32,),
-          Padding(
+          Container(
+            width: MediaQuery.of(context).size.width,
             padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
-            child: TextField(
-              focusNode: node,
-              controller: _controller,
-              keyboardType: _isNumberSearch ? TextInputType.number: TextInputType.text,
-              style: Theme.of(context).textTheme.display1,
-              decoration: InputDecoration(
-                hintText: _returnHymnalType(type),
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.search), 
-                  color: Colors.green, 
-                  onPressed: (){
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  },
-                ),
-                errorText: _isValid ? null: "찬송가를 입력하세요",
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                )
+            child: OutlineButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30)
               ),
-              
-              onSubmitted: (String val) {
-                print("$val");
-                _controller.clear();
+              child: Row(
+                children: <Widget>[
+                  SizedBox(width: 16,),
+                  Text(
+                    _returnHymnalType(type),
+                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                  ),
+                  Spacer(),
+                  IconButton(
+                    icon: Icon(Icons.mic, color: Colors.green,),
+                    onPressed: (){},
+                  )
+                ],
+              ),
+
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: HymnalSearch(
+                    hintText: _returnHymnalType(type), 
+                    textInputType: _isNumberSearch ? TextInputType.number: TextInputType.text,
+                  )
+                );
               },
-              autofocus: false,
-              
             ),
           ),
           Row(
