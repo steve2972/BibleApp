@@ -4,7 +4,6 @@ import 'package:bible_test2/Blocs/BibleProvider/verse_state.dart';
 import 'package:bible_test2/Blocs/Functions/chapterToBook.dart';
 import 'package:bible_test2/Repositories/Bible/BibleList.dart';
 import 'package:bible_test2/UI/Models/Reader/Bible/KorVerseWidget.dart';
-import 'package:bible_test2/UI/Models/Reader/VerseWidget.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +21,7 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
   final _scrollController = ScrollController();
   VerseBloc _verseBloc;
   final int cur;
+  int fontSizeIndex = 1;
 
   _KoreanReaderPageState(this.cur);
   
@@ -37,6 +37,33 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
   Widget build(BuildContext context) {
     return 
     Scaffold(
+      endDrawer: Drawer(
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "Hello world",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
+              decoration: BoxDecoration(
+                color: Colors.lightGreen
+              ),
+            ),
+            ListTile(title: Text("Hello world"),),
+            ListTile(title: Text("Hello world"),),
+            ListTile(title: Text("Hello world"),),
+          ],
+        ),
+      ),
       body: BlocBuilder(
         bloc: _verseBloc,
         builder: (context, state) {
@@ -97,9 +124,11 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
                   ),
                   actions: <Widget>[
                     IconButton(
-                        icon: Icon(Icons.more_vert),
+                        icon: Icon(Icons.menu),
                         color: Styles.lightIcon,
-                        onPressed: (){},
+                        onPressed: (){
+                          Scaffold.of(context).openEndDrawer();
+                        },
                       )
                   ]
                 ),
@@ -152,8 +181,6 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
   }
 
   void _onScroll() {
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.position.pixels;
   }
 
   void _scrollToTop() {

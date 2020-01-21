@@ -2,14 +2,10 @@ import 'package:bible_test2/Blocs/BibleProvider/Verse.dart';
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
 
 class BibleDatabaseHelper {
-  static final _databaseName = "BibleDb.db";
-  static final _databaseVersion = 1;
-
   static final verseTable = 'Verse';
   static final verseNum = 'Number';
   static final verseText = 'Text';

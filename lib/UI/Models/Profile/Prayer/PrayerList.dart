@@ -2,7 +2,6 @@ import 'package:bible_test2/UI/Models/Profile/Prayer/PrayerModel.dart';
 import 'package:bible_test2/UI/Models/Profile/Prayer/PrayerTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:outline_material_icons/outline_material_icons.dart';
 
 class PrayerList extends StatefulWidget {
   @override
