@@ -89,7 +89,6 @@ class _NotesPageState extends State<NotesPage> {
           ),
         ],
       ),
-      bottomNavigationBar: BibleBottomNavigationBar(),
     );
   }
 

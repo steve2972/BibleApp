@@ -1,3 +1,4 @@
+import 'package:bible_test2/Blocs/BibleProvider/Verse.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
@@ -42,4 +43,13 @@ class IncrementKorChapter extends VerseEvent {
   final int curChapter;
 
   IncrementKorChapter({this.isIncrement, this.curChapter}) : super(chapterNum: curChapter);
+}
+
+
+
+/* Save verse history */
+class SaveVerse extends VerseEvent {
+  final Verse verse;
+
+  SaveVerse({this.verse}) : super(chapterNum: verse.chapter);
 }
