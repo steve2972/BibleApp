@@ -34,7 +34,7 @@ class HymnalSearch extends SearchDelegate<String> {
       IconButton(
         icon: Icon(Icons.clear), 
         onPressed: (){
-          
+          query = '';
         },
       )
     ];
@@ -65,10 +65,21 @@ class HymnalSearch extends SearchDelegate<String> {
         : hymns.where((p) => p.startsWith(query)).toList();
 
     return ListView.builder(itemBuilder: (context, index) => ListTile(
-      leading: Icon(Icons.history),
-      title: Text(suggestionsList[index]),),
+        leading: Icon(Icons.history),
+        title: Text(suggestionsList[index]),
+        onTap: () {
+          query = suggestionsList[index];
+          showResults(context);
+        }
+      ),
       itemCount: suggestionsList.length,
+      
     );
+  }
+
+  @override
+  void showResults(BuildContext context) {
+    print(query);
   }
 
 }
