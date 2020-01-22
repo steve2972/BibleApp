@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import "package:http/http.dart" as http;
+import 'dart:convert' show json;
+import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,13 +18,33 @@ class LoginPageState extends State<LoginPage> {
   bool _passwordEntered = false;
   bool _emailEntered = false;
 
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: <String> [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ]
+  );
+
+  GoogleSignInAccount _currentUser;
+  String _contactText;
+
   final _formKey = GlobalKey<FormState>();
 
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+      setState(() {
+        _currentUser = account;
+      });
+      if (_currentUser != null) {
+        _handleGetContact();
+      }
+    });
+
+    _googleSignIn.signInSilently();
   }
 
   @override
@@ -28,12 +52,10 @@ class LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
-        physics: ClampingScrollPhysics(
-
-        ),
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: <Widget>[
-            SizedBox(height: 100,),
+            SizedBox(height: 64,),
             Container(
               height: MediaQuery.of(context).size.width * 0.5,
               width: MediaQuery.of(context).size.height * 0.5,
@@ -142,23 +164,150 @@ class LoginPageState extends State<LoginPage> {
           },
         ),
       ),
-      replacement: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+      replacement: Column(
         children: <Widget>[
-          Spacer(),
-          Text("처음이신가요?",
-          style: TextStyle(fontSize: 13),
-          textAlign: TextAlign.end,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Spacer(),
+              Text("처음이신가요?",
+              style: TextStyle(fontSize: 13),
+              textAlign: TextAlign.end,
+              ),
+              CupertinoButton(
+                child: Text(
+                  "회원가입하러 가기",
+                  style: TextStyle(color: Colors.blue, fontSize: 13),
+                ),
+                onPressed: (){},
+              ),
+            ],
           ),
-          CupertinoButton(
-            child: Text(
-              "회원가입하러 가기",
-              style: TextStyle(color: Colors.blue, fontSize: 13),
-            ),
+
+          SizedBox(height: 16,),
+
+          Row(
+            children: <Widget>[
+              Expanded(child: Divider(indent: 32, endIndent: 16,color: Colors.black,)),
+              Text("또는", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey),),
+              Expanded(child: Divider(indent: 16, endIndent: 32, color: Colors.black,))
+            ],
+          ),
+
+          SizedBox(height: 16,),
+
+          GoogleSignInButton(
             onPressed: (){},
+            darkMode: false,
+            borderRadius: 12,
+            
+          ),
+
+          SizedBox(height: 16,),
+          AppleSignInButton(
+            style: AppleButtonStyle.black,
+            onPressed: (){},
+            borderRadius: 12,
           ),
         ],
       ),
     );
   }
+
+  Future<void> _handleGetContact() async {
+    setState(() {
+      _contactText = "Loading contact info...";
+    });
+    final http.Response response = await http.get(
+      'https://people.googleapis.com/v1/people/me/connections'
+      '?requestMask.includeField=person.names',
+      headers: await _currentUser.authHeaders,
+    );
+    if (response.statusCode != 200) {
+      setState(() {
+        _contactText = "People API gave a ${response.statusCode} "
+            "response. Check logs for details.";
+      });
+      print('People API ${response.statusCode} response: ${response.body}');
+      return;
+    }
+    final Map<String, dynamic> data = json.decode(response.body);
+    final String namedContact = _pickFirstNamedContact(data);
+    setState(() {
+      if (namedContact != null) {
+        _contactText = "I see you know $namedContact!";
+      } else {
+        _contactText = "No contacts to display.";
+      }
+    });
+  }
+
+  String _pickFirstNamedContact(Map<String, dynamic> data) {
+    final List<dynamic> connections = data['connections'];
+    final Map<String, dynamic> contact = connections?.firstWhere(
+      (dynamic contact) => contact['names'] != null,
+      orElse: () => null,
+    );
+    if (contact != null) {
+      final Map<String, dynamic> name = contact['names'].firstWhere(
+        (dynamic name) => name['displayName'] != null,
+        orElse: () => null,
+      );
+      if (name != null) {
+        return name['displayName'];
+      }
+    }
+    return null;
+  }
+
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> _handleSignOut() => _googleSignIn.disconnect();
+
+  Widget _buildBody() {
+    if (_currentUser != null) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          ListTile(
+            leading: GoogleUserCircleAvatar(
+              identity: _currentUser,
+            ),
+            title: Text(_currentUser.displayName ?? ''),
+            subtitle: Text(_currentUser.email ?? ''),
+          ),
+          const Text("Signed in successfully."),
+          Text(_contactText ?? ''),
+          RaisedButton(
+            child: const Text('SIGN OUT'),
+            onPressed: _handleSignOut,
+          ),
+          RaisedButton(
+            child: const Text('REFRESH'),
+            onPressed: _handleGetContact,
+          ),
+        ],
+      );
+    } else {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          const Text("You are not currently signed in."),
+          RaisedButton(
+            child: const Text('SIGN IN'),
+            onPressed: _handleSignIn,
+          ),
+        ],
+      );
+    }
+  }
+
+
+  
 }
