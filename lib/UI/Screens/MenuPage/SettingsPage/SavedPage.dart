@@ -1,3 +1,4 @@
+import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/History/HistoryPage.dart';
 import 'package:bible_test2/UI/Screens/NotesPage/NotesPage.dart';
 import 'package:bible_test2/UI/Widgets/CommonAppBar.dart';
 import 'package:bible_test2/UI/Widgets/CommonTile.dart';
@@ -14,7 +15,7 @@ class SavedPage extends StatelessWidget {
         children: <Widget>[
           buildCommonTile(context, Icons.bookmark_border, "저장된 구절", null),
           buildCommonTile(context, Icons.note, "신언노트", NotesPage()),
-          buildCommonTile(context, Icons.history, "중보기도", NotesPage()),
+          buildCommonTile(context, Icons.history, "읽기 기록", HistoryPage()),
         ],
       ),
     );

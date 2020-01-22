@@ -21,7 +21,7 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
   final _scrollController = ScrollController();
   VerseBloc _verseBloc;
   final int cur;
-  int fontSizeIndex = 1;
+  double fontSize = 16.0;
 
   _KoreanReaderPageState(this.cur);
   
@@ -35,8 +35,7 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Scaffold(
+    return Scaffold(
       endDrawer: Drawer(
         child: ListView(
           physics: BouncingScrollPhysics(),
@@ -46,7 +45,7 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
               child: Container(
                 alignment: Alignment.center,
                 child: Text(
-                  "Hello world",
+                  "회복역 성경",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 26,
@@ -58,9 +57,28 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
                 color: Colors.lightGreen
               ),
             ),
-            ListTile(title: Text("Hello world"),),
-            ListTile(title: Text("Hello world"),),
-            ListTile(title: Text("Hello world"),),
+            ListTile(
+              leading: IconButton(icon: Icon(Icons.chevron_left), 
+                onPressed: (){
+                  if (fontSize > 12) {
+                    setState(() {
+                      fontSize--;
+                    });
+                  }
+                  
+                },
+              ),
+              title: Center(child:Text("폰트 크기: ${fontSize.toInt() - 4}"),),
+              trailing: IconButton(icon: Icon(Icons.chevron_right), 
+                onPressed: (){
+                  if (fontSize < 22) {
+                    setState(() {
+                      fontSize++;
+                    });
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -136,33 +154,41 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      return KorVerseWidget(verse: state.verses[index],);
+                      return KorVerseWidget(fontSize: fontSize, verse: state.verses[index]);
 
                   }, childCount: state.verses.length),
                 ),
                 SliverToBoxAdapter(child: Container(height: 45,),),
                 SliverToBoxAdapter(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      IconButton(
-                        color: Colors.blue, 
-                        icon: Icon(Icons.arrow_back_ios),
-                        onPressed: () {
-                          _verseBloc.kordecrement(state.chapterNum);
-                          _scrollToTop();
-                        } 
+                  child: 
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(32.0, 0, 32, 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: RaisedButton(
+                            color: Colors.blue,
+                            onPressed: () {
+                              _verseBloc.korincrement(state.chapterNum);
+                              _scrollToTop();
+                            },
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4)
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(Icons.check, color: Colors.white,),
+                                Text("다음 장", style: TextStyle(color: Colors.white, fontSize: 18),),
+                              ],
+                            ),
+                          ),
                         ),
-                      IconButton(
-                        color: Colors.blue, 
-                        icon: Icon(Icons.arrow_forward_ios),
-                        onPressed: (){
-                          _verseBloc.korincrement(state.chapterNum);
-                          _scrollToTop();
-                        } 
-                        ),
-
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SliverToBoxAdapter(child: Container(height: 45,),),
