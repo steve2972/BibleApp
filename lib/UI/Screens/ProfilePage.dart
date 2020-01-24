@@ -80,7 +80,7 @@ class _ProfilePageState extends State<ProfilePage> with SingleTickerProviderStat
         ],
 
       ),
-      bottomNavigationBar: BibleBottomNavigationBar(context: context,),
+      //bottomNavigationBar: BibleBottomNavigationBar(context: context,),
     );
   }
 }

@@ -22,7 +22,7 @@ class MenuPage extends StatelessWidget {
           SettingsBar()
         ],
       ),
-      bottomNavigationBar: BibleBottomNavigationBar(context: context,),
+      //bottomNavigationBar: BibleBottomNavigationBar(context: context,),
     );
   }
 

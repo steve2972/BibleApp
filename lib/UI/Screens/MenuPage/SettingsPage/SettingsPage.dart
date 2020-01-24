@@ -25,7 +25,7 @@ class SettingsPage extends StatelessWidget {
 
         ],
       ),
-      bottomNavigationBar: BibleBottomNavigationBar(context: context,),
+      //bottomNavigationBar: BibleBottomNavigationBar(context: context,),
     );
   }
 
