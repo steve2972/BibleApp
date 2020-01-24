@@ -2,20 +2,10 @@ import 'package:bible_test2/Blocs/BibleProvider/Verse.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/material.dart';
 
-class KorVerseWidget extends StatefulWidget {
+class KorVerseWidget extends StatelessWidget {
   final Verse verse;
   final double fontSize;
-
-  const KorVerseWidget({Key key, this.fontSize = 14.0, @required this.verse}) : super(key: key);
-  
-  @override
-  KorVerseWidgetState createState() => KorVerseWidgetState(verse: verse, fontSize: fontSize);
-}
-
-class KorVerseWidgetState extends State<KorVerseWidget> {
-  final Verse verse;
-  final double fontSize;
-  KorVerseWidgetState({Key key, this.fontSize = 14.0, @required this.verse});
+  KorVerseWidget({Key key, this.fontSize, this.verse});
   
   /* Local constructor variables */
   bool isSaved = false;
@@ -30,7 +20,7 @@ class KorVerseWidgetState extends State<KorVerseWidget> {
             elevation: 0,
             backgroundColor: Styles.LightAppBarColor,
             context: context,
-            builder: (builder) {
+            builder: (context) {
               return SingleChildScrollView(
                 physics: BouncingScrollPhysics(),
                 child: Padding(
@@ -40,7 +30,7 @@ class KorVerseWidgetState extends State<KorVerseWidget> {
                     children: <Widget>[
                       _buildButtonRow(context),
                       SizedBox(height: 16,),
-                      _buildVerseTile(context),
+                      _buildVerseTile(context, fontSize),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(32.0, 16, 0, 16),
                         child: Text("노트", style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
@@ -57,12 +47,28 @@ class KorVerseWidgetState extends State<KorVerseWidget> {
             }
           );
         },
-        child: _buildVerseTile(context)
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: Container(
+                child: Center(child: Text("${verse.id}", style: TextStyle(color: Colors.blue, fontSize: fontSize),))
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: RichText(
+                text: TextSpan(text: verse.text, style: DefaultTextStyle.of(context).style.copyWith(fontSize: fontSize)),
+              ),
+            )
+          ],
+        )
       ),
     );
   }
 
-  Widget _buildVerseTile(BuildContext context) {
+  Widget _buildVerseTile(BuildContext context, double font) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -70,13 +76,13 @@ class KorVerseWidgetState extends State<KorVerseWidget> {
           padding: const EdgeInsets.only(right: 8.0),
           child: Container(
             width: 25,
-            child: Center(child: Text("${verse.id}", style: TextStyle(color: Colors.blue, fontSize: fontSize),))
+            child: Center(child: Text("${verse.id}", style: TextStyle(color: Colors.blue, fontSize: font),))
           ),
         ),
         Expanded(
           flex: 2,
           child: RichText(
-            text: TextSpan(text: verse.text, style: DefaultTextStyle.of(context).style.copyWith(fontSize: fontSize)),
+            text: TextSpan(text: verse.text, style: TextStyle(color: Colors.black, fontSize: font)),
           ),
         )
       ],
@@ -91,13 +97,16 @@ class KorVerseWidgetState extends State<KorVerseWidget> {
           icon: isSaved ? Icon(Icons.bookmark, color: Colors.orange,): Icon(Icons.bookmark_border),
           color: Styles.lightIcon,
           onPressed: (){
-            setState(() {
-              isSaved = !isSaved;
-            });
+            isSaved = !isSaved;
           },
         ),
         IconButton(
           icon: Icon(Icons.edit),
+          color: Styles.lightIcon,
+          onPressed: (){},
+        ),
+        IconButton(
+          icon: Icon(Icons.share),
           color: Styles.lightIcon,
           onPressed: (){},
         ),
