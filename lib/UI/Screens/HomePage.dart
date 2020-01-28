@@ -1,3 +1,4 @@
+import 'package:bible_test2/Blocs/Login/Authentication.dart';
 import 'package:bible_test2/UI/Screens/pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +12,19 @@ class Destination {
 }
 
 List<Destination> allDestinations = <Destination>[
-  Destination('Reader', OMIcons.home, ReaderPage()),
+  Destination('Reader', OMIcons.home, ReaderPage(),),
   Destination('Profile', CupertinoIcons.profile_circled, ProfilePage()),
   Destination('Menu', Icons.menu, MenuPage()),
 ];
 
 class HomePage extends StatefulWidget {
+  HomePage({Key key, this.auth, this.userId, this.logoutCallback})
+      : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -31,9 +39,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin<HomeP
         top: false,
         child: IndexedStack(
           index: _currentIndex,
-          children: allDestinations.map<Widget>((Destination destination) {
-            return destination.route;
-          }).toList(),
+          children: <Widget> [
+            ReaderPage(),
+            ProfilePage(),
+            MenuPage()
+          ]
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
