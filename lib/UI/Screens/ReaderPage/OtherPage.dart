@@ -1,4 +1,5 @@
 import 'package:bible_test2/UI/Widgets/CupertinoNavigate.dart';
+import 'package:bible_test2/UI/Widgets/UnavailablePage.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,9 @@ class OtherPage extends StatelessWidget {
       body: ListView(
         physics: BouncingScrollPhysics(),
         children: <Widget>[
-          _buildTile(context, Icons.video_library, "동영상", null),
-          _buildTile(context, Icons.library_music, "오디오", null),
-          _buildTile(context, Icons.folder, "자료", null),
+          _buildTile(context, Icons.video_library, "동영상", UnavailablePage()),
+          _buildTile(context, Icons.library_music, "오디오", UnavailablePage()),
+          _buildTile(context, Icons.folder, "자료", UnavailablePage()),
 
           
 

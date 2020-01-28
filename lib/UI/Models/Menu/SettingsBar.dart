@@ -2,7 +2,9 @@ import 'package:bible_test2/UI/Screens/LoginPage/LoginPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/HelpAndSupport/AboutAppPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/SettingsPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/StatisticsPage.dart';
+import 'package:bible_test2/UI/Widgets/UnavailablePage.dart';
 import 'package:bible_test2/UI/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -20,7 +22,8 @@ class SettingsBar extends StatelessWidget {
               createSettingsBar(
                 Icon(CupertinoIcons.profile_circled, color: Colors.grey[500],), "환경설정", SettingsPage(), context),
               createSettingsBar(Icon(Icons.timer, color: Colors.orange,), "사용 시간", StatisticsPage(), context),
-              createSettingsBar(Icon(Icons.exit_to_app, color: Colors.blue,), "로그아웃", LoginPage(), context),
+
+              createLogoutBar(Icon(Icons.exit_to_app, color: Colors.blue,), "로그아웃", LoginPage(), context),
 
             ],
           ),
@@ -28,9 +31,9 @@ class SettingsBar extends StatelessWidget {
             leading: Icon(Icons.help),
             title: Text("고객센터/도움말", style: Styles.titleText,),
             children: <Widget>[
-              createSettingsBar(Icon(Icons.list, color: Colors.red,), "FAQ", null, context),
+              createSettingsBar(Icon(Icons.list, color: Colors.red,), "FAQ", UnavailablePage(), context),
               createSettingsBar(Icon(Icons.help_outline, color: Colors.green,), "앱에 대하여", AboutAppPage(), context),
-              createSettingsBar(Icon(Icons.warning, color: Colors.yellow[800],), "문제 신고", null, context),
+              createSettingsBar(Icon(Icons.warning, color: Colors.yellow[800],), "문제 신고", UnavailablePage(), context),
 
             ],
           ),
@@ -104,8 +107,13 @@ class SettingsBar extends StatelessWidget {
         ),
       ),
       onPressed: () {
-        Navigator.push(context, CupertinoPageRoute(builder: (context) => route));
+        _signOut();
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => route), ModalRoute.withName('/'));
       },
     );
+  }
+
+  Future<void> _signOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 }
