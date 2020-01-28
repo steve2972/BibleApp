@@ -1,11 +1,14 @@
 import 'package:bible_test2/Blocs/BibleProvider/Verse.dart';
+import 'package:bible_test2/UI/Widgets/CommonHintText.dart';
+import 'package:bible_test2/UI/Widgets/UnavailablePage.dart';
 import 'package:bible_test2/UI/theme.dart';
 import 'package:flutter/material.dart';
 
 class KorVerseWidget extends StatelessWidget {
   final Verse verse;
   final double fontSize;
-  KorVerseWidget({Key key, this.fontSize, this.verse});
+  BuildContext context;
+  KorVerseWidget({Key key, this.fontSize, this.verse, this.context});
   
   /* Local constructor variables */
   bool isSaved = false;
@@ -28,13 +31,14 @@ class KorVerseWidget extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      _buildButtonRow(context),
+                      _buildButtonRow(this.context),
                       SizedBox(height: 16,),
                       _buildVerseTile(context, fontSize),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(32.0, 16, 0, 16),
                         child: Text("노트", style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
                       ),
+                      commonHintText(context, "노트를 추가하세요", UnavailablePage()),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(32.0, 16, 0, 16),
                         child: Text("각주", style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),),
@@ -98,12 +102,18 @@ class KorVerseWidget extends StatelessWidget {
           color: Styles.lightIcon,
           onPressed: (){
             isSaved = !isSaved;
+            SnackBar snack;
+            if (isSaved == true) {
+              snack = new SnackBar(content: Text("${verse.id}절 저장 됨"),duration: Duration(seconds: 2),);
+            }
+            else {
+              snack = new SnackBar(content: Text("구절 저장 해제"),duration: Duration(seconds: 2),);
+            }
+
+            Scaffold.of(context).showSnackBar(snack);
+            Navigator.pop(context);
+
           },
-        ),
-        IconButton(
-          icon: Icon(Icons.edit),
-          color: Styles.lightIcon,
-          onPressed: (){},
         ),
         IconButton(
           icon: Icon(Icons.share),
@@ -111,10 +121,11 @@ class KorVerseWidget extends StatelessWidget {
           onPressed: (){},
         ),
         IconButton(
-          icon: Icon(Icons.add),
+          icon: Icon(Icons.edit),
           color: Styles.lightIcon,
           onPressed: (){},
         ),
+        
       ],
     );
   }

@@ -156,7 +156,7 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      return KorVerseWidget(fontSize: fontSize, verse: state.verses[index]);
+                      return KorVerseWidget(fontSize: fontSize, verse: state.verses[index], context: context,);
 
                   }, childCount: state.verses.length),
                 ),
