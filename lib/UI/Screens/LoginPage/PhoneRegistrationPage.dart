@@ -20,7 +20,7 @@ class _PhoneRegistrationPageState extends State<PhoneRegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _buildSendNumber()
+      body: _isCodeSent ? _buildEnterCode():_buildSendNumber()
     );
   }
 
