@@ -1,4 +1,5 @@
-import 'package:bible_test2/UI/Screens/HomePage.dart';
+import 'package:bible_test2/Blocs/Login/Authentication.dart';
+import 'package:bible_test2/UI/Screens/LoginPage/RootPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'Blocs/BottomNavigation/NavigationBloc.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       ]);
     return MaterialApp(
       theme: Designs.lightTheme,
-      home: HomePage(),
+      home: RootPage(auth: new Auth()),
     );
   }
 }
