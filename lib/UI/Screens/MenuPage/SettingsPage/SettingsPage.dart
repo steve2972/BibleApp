@@ -1,4 +1,3 @@
-import 'package:bible_test2/UI/Models/Navigation/BottomNavigationBar.dart';
 import 'package:bible_test2/UI/Models/Reader/Bible/KoreanReaderPage.dart';
 import 'package:bible_test2/UI/Screens/LoginPage/PhoneRegistrationPage.dart';
 import 'package:bible_test2/UI/Screens/LoginPage/ProfileEditPage.dart';
