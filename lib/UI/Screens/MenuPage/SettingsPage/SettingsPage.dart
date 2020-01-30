@@ -1,8 +1,10 @@
-import 'package:bible_test2/UI/Models/Navigation/BottomNavigationBar.dart';
 import 'package:bible_test2/UI/Models/Reader/Bible/KoreanReaderPage.dart';
+import 'package:bible_test2/UI/Screens/LoginPage/PhoneRegistrationPage.dart';
 import 'package:bible_test2/UI/Screens/LoginPage/ProfileEditPage.dart';
+import 'package:bible_test2/UI/Screens/LoginPage/RegistrationPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/HelpAndSupport/AboutAppPage.dart';
 import 'package:bible_test2/UI/Screens/MenuPage/SettingsPage/PurchasePage.dart';
+import 'package:bible_test2/UI/Widgets/UnavailablePage.dart';
 import 'package:bible_test2/UI/Widgets/filler.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +27,7 @@ class SettingsPage extends StatelessWidget {
 
         ],
       ),
-      bottomNavigationBar: BibleBottomNavigationBar(context: context,),
+      //bottomNavigationBar: BibleBottomNavigationBar(context: context,),
     );
   }
 
@@ -61,8 +63,8 @@ class SettingsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _buildTitle("보안 설정", "비밀번호 변경과 추가적 설정으로 계정의 안정성을 높이세요."),
-            _buildButton(context, Icons.security, "보안 및 로그인", "비밀번호 변경과 보안 설정", null),
-            _buildButton(context, Icons.lock, "익명성", "회원의 공개설정을 확인하세요", null),
+            _buildButton(context, Icons.security, "보안 및 로그인", "비밀번호 변경과 보안 설정", RegisterForm()),
+            _buildButton(context, Icons.lock, "익명성", "회원의 공개설정을 확인하세요", PhoneRegistrationPage()),
           ],
         ),
       ),
@@ -77,7 +79,7 @@ class SettingsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             _buildTitle("서비스 정보", "서비스 이용약관 및 사용 계약을 참고하세요."),
-            _buildButton(context, Icons.notification_important, "공지사항", "개발자가 직접 공지하는 알림", null),
+            _buildButton(context, Icons.notification_important, "공지사항", "개발자가 직접 공지하는 알림", UnavailablePage()),
             _buildButton(context, Icons.help_outline, "고객센터", "문제 문의와 앱에 관련한 정보", AboutAppPage()),
           ],
         ),

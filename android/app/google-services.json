@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "948404281795",
+    "firebase_url": "https://btmk-bible.firebaseio.com",
+    "project_id": "btmk-bible",
+    "storage_bucket": "btmk-bible.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948404281795:android:88a14300e8b58553195d76",
+        "android_client_info": {
+          "package_name": "com.BTMK.bibleApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948404281795-6gm2np8q70qfvv0qn69262vn66bjeq49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuml0ghDn8tRrY6jZHlysiewSJg789D4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948404281795-6gm2np8q70qfvv0qn69262vn66bjeq49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

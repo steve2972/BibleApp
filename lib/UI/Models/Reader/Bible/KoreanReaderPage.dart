@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class KoreanReaderPage extends StatefulWidget {
-  int chapter;
+  final int chapter;
   KoreanReaderPage(this.chapter);
   @override
   _KoreanReaderPageState createState() => new _KoreanReaderPageState(chapter);
@@ -63,6 +63,7 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
                   if (fontSize > 12) {
                     setState(() {
                       fontSize--;
+                      print("fontsize decreased to $fontSize");
                     });
                   }
                   
@@ -74,6 +75,7 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
                   if (fontSize < 22) {
                     setState(() {
                       fontSize++;
+                      print("fontsize increased to $fontSize");
                     });
                   }
                 },
@@ -142,7 +144,7 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
                   ),
                   actions: <Widget>[
                     IconButton(
-                        icon: Icon(Icons.menu),
+                        icon: Icon(Icons.format_size),
                         color: Styles.lightIcon,
                         onPressed: (){
                           Scaffold.of(context).openEndDrawer();
@@ -154,7 +156,7 @@ class _KoreanReaderPageState extends State<KoreanReaderPage> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {
-                      return KorVerseWidget(fontSize: fontSize, verse: state.verses[index]);
+                      return KorVerseWidget(fontSize: fontSize, verse: state.verses[index], context: context,);
 
                   }, childCount: state.verses.length),
                 ),

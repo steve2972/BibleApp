@@ -1,11 +1,8 @@
-import 'package:bible_test2/UI/Screens/MenuPage.dart';
-import 'package:bible_test2/UI/Screens/ProfilePage.dart';
+import 'package:bible_test2/Blocs/Login/Authentication.dart';
+import 'package:bible_test2/UI/Screens/LoginPage/RootPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'Blocs/InheritedBlocs.dart';
 import 'Blocs/BottomNavigation/NavigationBloc.dart';
-import 'Blocs/BottomNavigation/AppPages.dart';
-import 'UI/Screens/pages.dart';
 import 'UI/theme.dart';
 
 Future main() async {
@@ -26,45 +23,9 @@ class MyApp extends StatelessWidget {
     SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
       ]);
-    return InheritedBlocs(
-      navigationBloc: NavigationBloc(),
-      child: MaterialApp(
-        theme: Designs.lightTheme,
-        home: MyHomePage(),
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.bibleBloc}) : super(key: key);
-  final bibleBloc;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<AppPage>(
-      stream: InheritedBlocs.of(context).navigationBloc.currentPage,
-      builder: (context, currentPageSnapshot) {
-        switch (currentPageSnapshot.data) {
-          case AppPage.profilePage:
-            return ProfilePage();
-            break;
-          case AppPage.readerPage:
-            return ReaderPage();
-            break;
-          case AppPage.menuPage:
-            return MenuPage();
-            break;
-          default:
-            break;
-        }
-      },
-      initialData: null,
+    return MaterialApp(
+      theme: Designs.lightTheme,
+      home: RootPage(auth: new Auth()),
     );
   }
 }

@@ -1,46 +1,157 @@
+import 'package:bible_test2/Blocs/Login/Authentication.dart';
+import 'package:bible_test2/UI/Screens/HomePage.dart';
+import 'package:bible_test2/UI/Widgets/CupertinoNavigate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  LoginPage({this.auth, this.loginCallback});
+
+  final BaseAuth auth;
+  final VoidCallback loginCallback;
+
   @override
-  LoginPageState createState() => LoginPageState();
+  State<StatefulWidget> createState() => new _LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = new GlobalKey<FormState>();
 
   String _email;
   String _password;
+  String _errorMessage;
+
+  bool _isLoginForm;
+  bool _isLoading;
   bool _obscureText = true;
-  bool _passwordEntered = false;
-  bool _emailEntered = false;
 
-  final _formKey = GlobalKey<FormState>();
+  // Check if form is valid before perform login or signup
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form.validate()) {
+      form.save();
+      return true;
+    }
+    return false;
+  }
 
+  // Perform login or signup
+  void validateAndSubmit() async {
+    setState(() {
+      _errorMessage = "";
+      _isLoading = true;
+    });
+    if (validateAndSave()) {
+      String userId = "";
+      try {
+        if (_isLoginForm) {
+          userId = await widget.auth.signIn(_email, _password);
+          print('Signed in: $userId');
+        } else {
+          userId = await widget.auth.signUp(_email, _password);
+          //widget.auth.sendEmailVerification();
+          //_showVerifyEmailSentDialog();
+          print('Signed up user: $userId');
+        }
+        setState(() {
+          _isLoading = false;
+        });
+
+        if (userId.length > 0 && userId != null && _isLoginForm) {
+          widget.loginCallback();
+        }
+
+        cupertinoNavigate(context, HomePage(
+          userId: userId,
+          auth: widget.auth,
+        ));
+      } catch (e) {
+        print('Error: $e');
+        setState(() {
+          _isLoading = false;
+          _errorMessage = e.message;
+          _formKey.currentState.reset();
+        });
+      }
+    }
+  }
 
   @override
   void initState() {
-    // TODO: implement initState
+    _errorMessage = "";
+    _isLoading = false;
+    _isLoginForm = true;
+
     super.initState();
+  }
+
+  void resetForm() {
+    _formKey.currentState.reset();
+    _errorMessage = "";
+  }
+
+  void toggleFormMode() {
+    resetForm();
+    setState(() {
+      _isLoginForm = !_isLoginForm;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
-        physics: ClampingScrollPhysics(
-
-        ),
-        child: Column(
+    return new Scaffold(
+        body: Stack(
           children: <Widget>[
-            SizedBox(height: 100,),
-            Container(
-              height: MediaQuery.of(context).size.width * 0.5,
-              width: MediaQuery.of(context).size.height * 0.5,
-              child: Image(
-                image: AssetImage('assets/pictures/BTMK_logo.png'),
-              )
-            ),
+            _showForm(),
+            _showCircularProgress(),
+          ],
+        ));
+  }
+
+  Widget _showCircularProgress() {
+    if (_isLoading) {
+      return Center(child: CircularProgressIndicator());
+    }
+    return Container(
+      height: 0.0,
+      width: 0.0,
+    );
+  }
+
+//  void _showVerifyEmailSentDialog() {
+//    showDialog(
+//      context: context,
+//      builder: (BuildContext context) {
+//        // return object of type Dialog
+//        return AlertDialog(
+//          title: new Text("Verify your account"),
+//          content:
+//              new Text("Link to verify account has been sent to your email"),
+//          actions: <Widget>[
+//            new FlatButton(
+//              child: new Text("Dismiss"),
+//              onPressed: () {
+//                toggleFormMode();
+//                Navigator.of(context).pop();
+//              },
+//            ),
+//          ],
+//        );
+//      },
+//    );
+//  }
+
+  Widget _showForm() {
+    return new Container(
+      padding: EdgeInsets.all(16),
+      child: new Form(
+        key: _formKey,
+        child: new ListView(
+          physics: BouncingScrollPhysics(),
+          shrinkWrap: true,
+          children: <Widget>[
+            SizedBox(height: 32,),
+            showLogo(),
             SizedBox(height: 16),
             Padding(
               padding: EdgeInsets.all(32),
@@ -50,65 +161,155 @@ class LoginPageState extends State<LoginPage> {
                   textAlign: TextAlign.center,
                 ),
             ),
-            Form(
-              key: _formKey,
-              child: 
-              Column(
-                children: <Widget>[
-                  TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12)
-                      ),
-                      labelText: "이메일",
-                      icon: Icon(Icons.email)
-                    ),
-                    validator: (String value) {
-                      return isEmail(value) ? null : "이메일 주소가 올바르지 않습니다";
-                    },
-                    onChanged: (String value) {
-                      setState(() {
-                        _emailEntered = true;
-                      });
-                    },
-                  ),
-                  SizedBox(height: 16,),
-                  TextFormField(
-                    obscureText: _obscureText,
-                    maxLength: 16,
-                    validator: (String value) {
-                      return isPassword(value) ? null : "비밀번호가 올바르지 않습니다";
-                    },
-                    decoration: new InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12)
-                      ),
-                      helperText: "16자 이내의 비밀번호",
-                      icon: Icon(Icons.lock),
-                      labelText: "비밀번호",
-                      suffixIcon: new GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
-                        },
-                        child: new Icon(_obscureText ? Icons.visibility: Icons.visibility_off),
-                      )
-                    ),
-                    onChanged: (String value) {
-                     setState(() {
-                       _passwordEntered = true;
-                     });
-                    },
-                  ),
-                  buildVisibleButton(context)
-                  
-                ],
-              ),
-            ),
+            showEmailInput(),
+            showPasswordInput(),
+            showHiddenPassword(),
+            showPrimaryButton(),
+            showSecondaryButton(),
+            showErrorMessage(),
+
           ],
         ),
       ),
+    );
+  }
+
+  Widget showErrorMessage() {
+    if (_errorMessage.length > 0 && _errorMessage != null) {
+      return new Text(
+        _errorMessage,
+        style: TextStyle(
+            fontSize: 13.0,
+            color: Colors.red,
+            height: 1.0,
+            fontWeight: FontWeight.w300),
+      );
+    } else {
+      return new Container(
+        height: 0.0,
+      );
+    }
+  }
+
+  Widget showLogo() {
+    return new Container(
+      height: MediaQuery.of(context).size.width * 0.5,
+      width: MediaQuery.of(context).size.height * 0.5,
+      child: Image(
+        image: AssetImage('assets/pictures/BTMK_logo.png'),
+      )
+    );
+  }
+
+  Widget showEmailInput() {
+    return Padding(
+      padding: EdgeInsets.all(0),
+      child: new TextFormField(
+        maxLines: 1,
+        keyboardType: TextInputType.emailAddress,
+        autofocus: false,
+        decoration: new InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12)
+          ),
+          hintText: '이메일',
+          icon: new Icon(
+            Icons.email,
+          )
+        ),
+        validator: (value) => !isEmail(value) ? '이메일을 입력하세요' : null,
+        onSaved: (value) => _email = value.trim(),
+        onChanged: (value) {
+
+        },
+      ),
+    );
+  }
+
+  Widget showPasswordInput() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
+      child: new TextFormField(
+        maxLines: 1,
+        obscureText: _obscureText,
+        maxLength: 16,
+        autofocus: false,
+        decoration: new InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12)
+          ),
+          hintText: '비밀번호',
+          icon: new Icon(
+            Icons.lock,
+            color: Colors.grey,
+          ),
+          helperText: "16자 이내의 비밀번호를 입력하세요",
+          suffixIcon: new GestureDetector(
+            onTap: () {
+              setState(() {
+                _obscureText = !_obscureText;
+              });
+            },
+            child: new Icon(_obscureText ? Icons.visibility: Icons.visibility_off),
+          )
+        ),
+        validator: (value) => value.isEmpty ? '비밀번호를 입력하세요' : null,
+        onSaved: (value) => _password = value.trim(),
+      ),
+    );
+  }
+
+  Widget showSecondaryButton() {
+    return new CupertinoButton(
+        child: new Text(
+            _isLoginForm ? '처음이세요? 회원가입하기' : '계정이 이미 있으신가요? 로그인 하기',
+            style: new TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.blue)),
+        onPressed: toggleFormMode);
+  }
+
+  Widget showPrimaryButton() {
+    return new Padding(
+        padding: EdgeInsets.fromLTRB(64.0, 45.0, 64.0, 0.0),
+        child: SizedBox(
+          height: 40.0,
+          child: new RaisedButton(
+            elevation: 5.0,
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(30.0)),
+            color: Colors.blue,
+            child: new Text(_isLoginForm ? '로그인' : '계정 만들기',
+                style: new TextStyle(fontSize: 18.0, color: Colors.white)),
+            onPressed: validateAndSubmit,
+          ),
+        ));
+  }
+
+  Widget showHiddenPassword() {
+    return Visibility(
+      visible: !_isLoginForm,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(0.0, 16.0, 0.0, 0.0),
+        child: new TextFormField(
+          maxLines: 1,
+          obscureText: _obscureText,
+          autofocus: false,
+          decoration: new InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12)
+            ),
+            hintText: '비밀번호를 확인하세요',
+            icon: new Icon(
+              Icons.lock,
+              color: Colors.grey,
+            ),
+            helperText: "비밀번호 확인을 위해 위와 같은 비밀번호를 입력하세요"
+          ),
+          validator: (value) => value == _password ? '비밀번호를 입력하세요' : null,
+          onSaved: (value) => _password = value.trim(),
+        ),
+      ),
+
+      replacement: Container(),
     );
   }
 
@@ -120,45 +321,5 @@ class LoginPageState extends State<LoginPage> {
 
     return regExp.hasMatch(value);
 
-  }
-
-  bool isPassword(String value) {
-    if (value.isEmpty) return false;
-    return true;
-  }
-
-  Widget buildVisibleButton(BuildContext context) {
-    return Visibility(
-      visible: _emailEntered && _passwordEntered,
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: CupertinoButton.filled(
-          child: Text("로그인"),
-          onPressed: (){
-            if (_formKey.currentState.validate()) {
-              print("Hello");
-              Scaffold.of(context).showSnackBar(SnackBar(content: Text("데이터 처리 중"),));
-            }
-          },
-        ),
-      ),
-      replacement: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          Spacer(),
-          Text("처음이신가요?",
-          style: TextStyle(fontSize: 13),
-          textAlign: TextAlign.end,
-          ),
-          CupertinoButton(
-            child: Text(
-              "회원가입하러 가기",
-              style: TextStyle(color: Colors.blue, fontSize: 13),
-            ),
-            onPressed: (){},
-          ),
-        ],
-      ),
-    );
   }
 }

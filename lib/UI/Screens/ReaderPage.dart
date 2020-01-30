@@ -1,4 +1,3 @@
-import 'package:bible_test2/UI/Models/Navigation/BottomNavigationBar.dart';
 import 'package:bible_test2/UI/Models/Reader/ReaderEntryPage.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +7,6 @@ class ReaderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ReaderEntryPage(),
-      bottomNavigationBar: BibleBottomNavigationBar(context: context,),
     );
   }
   
