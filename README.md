@@ -1,14 +1,6 @@
-# 복음서원 성경 어플
-
-새로 개정된 구약 및 신약 회복역이 출시됨으로 모바일 성경의 필요성을 느껴 어플리케이션을 개발했습니다.
-
-현재까지 개발 된 어플 스크린샷은 다음과 같습니다.
-
-
 ## 홈페이지
 
 - 여기서 성경 사용 및 찬송가를 볼 수 있습니다
-<img src="https://user-images.githubusercontent.com/38309010/72708239-a4dfe280-3ba5-11ea-9079-e708b7984918.jpg" width=300/>
 <img src="https://user-images.githubusercontent.com/38309010/72708257-af01e100-3ba5-11ea-80c4-91710568a986.jpg" width=300/>
 <img src="https://user-images.githubusercontent.com/38309010/72708259-b1643b00-3ba5-11ea-8dd2-2d87f8959720.jpg" width=300/>
 <img src="https://user-images.githubusercontent.com/38309010/72708279-b88b4900-3ba5-11ea-8434-e5857af33e9f.jpg" width=300/>
